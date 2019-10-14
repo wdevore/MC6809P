@@ -72,12 +72,12 @@ $EndComp
 $Comp
 L Connector_Generic:Conn_01x06 J?
 U 1 1 5DAC952C
-P 9650 13850
-F 0 "J?" H 9730 13842 50  0000 L CNN
-F 1 "Conn_01x06" H 9730 13751 50  0000 L CNN
-F 2 "" H 9650 13850 50  0001 C CNN
-F 3 "~" H 9650 13850 50  0001 C CNN
-	1    9650 13850
+P 9450 11950
+F 0 "J?" H 9530 11942 50  0000 L CNN
+F 1 "Conn_01x06" H 9530 11851 50  0000 L CNN
+F 2 "" H 9450 11950 50  0001 C CNN
+F 3 "~" H 9450 11950 50  0001 C CNN
+	1    9450 11950
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -201,16 +201,16 @@ Wire Wire Line
 	3850 6300 3850 6750
 Wire Wire Line
 	3850 6750 4500 6750
-Text Notes 17000 15200 0    50   ~ 0
+Text Notes 750  12000 0    50   ~ 0
 Memory Map:\n0000-7FFF <= 32K RAM\n8000-9FFF <= 8K IO Interface\nA000-FFFF <= 24K ROM
 Wire Notes Line style solid
-	17000 14800 18600 14800
+	750  11600 2350 11600
 Wire Notes Line style solid
-	18600 14800 18600 15600
+	2350 11600 2350 12400
 Wire Notes Line style solid
-	18600 15600 17000 15600
+	2350 12400 750  12400
 Wire Notes Line style solid
-	17000 15600 17000 14800
+	750  12400 750  11600
 $Comp
 L Device:C C?
 U 1 1 5DAC959A
@@ -1080,10 +1080,10 @@ Wire Wire Line
 	11450 11200 11450 11300
 Wire Wire Line
 	11000 950  11150 950 
-Text GLabel 9300 13650 0    50   Input ~ 0
+Text GLabel 9100 11750 0    50   Input ~ 0
 ~CS
 Wire Wire Line
-	9300 13650 9450 13650
+	9100 11750 9250 11750
 Wire Wire Line
 	10750 10700 10600 10700
 Wire Wire Line
@@ -1973,11 +1973,11 @@ $EndComp
 Wire Wire Line
 	16800 11000 17850 11000
 Connection ~ 17850 11000
-Text GLabel 9300 13750 0    50   Input ~ 0
+Text GLabel 9100 11850 0    50   Input ~ 0
 SCK
-Text GLabel 9300 13850 0    50   Input ~ 0
+Text GLabel 9100 11950 0    50   Input ~ 0
 MOSI
-Text GLabel 9300 13950 0    50   Input ~ 0
+Text GLabel 9100 12050 0    50   Input ~ 0
 MISO
 Text GLabel 10600 9300 0    50   Input ~ 0
 ~CS
@@ -1988,11 +1988,11 @@ MOSI
 Text GLabel 10600 9600 0    50   Input ~ 0
 MISO
 Wire Wire Line
-	9300 13750 9450 13750
+	9100 11850 9250 11850
 Wire Wire Line
-	9300 13850 9450 13850
+	9100 11950 9250 11950
 Wire Wire Line
-	9300 13950 9450 13950
+	9100 12050 9250 12050
 Wire Wire Line
 	10600 9300 10750 9300
 Wire Wire Line
