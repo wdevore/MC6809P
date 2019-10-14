@@ -81,17 +81,6 @@ F 3 "~" H 9650 13850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector_Generic:Conn_01x02 J?
-U 1 1 5DAC9532
-P 14300 15300
-F 0 "J?" H 14380 15292 50  0000 L CNN
-F 1 "Conn_01x02" H 14380 15201 50  0000 L CNN
-F 2 "" H 14300 15300 50  0001 C CNN
-F 3 "~" H 14300 15300 50  0001 C CNN
-	1    14300 15300
-	1    0    0    -1  
-$EndComp
-$Comp
 L power:VCC #PWR?
 U 1 1 5DAC9549
 P 2800 4850
@@ -1314,8 +1303,6 @@ Wire Wire Line
 Wire Wire Line
 	9250 7000 9250 7450
 Connection ~ 9250 7450
-Text Notes 15000 15100 0    50   ~ 0
-RTS\nDRY\nEOD
 Wire Wire Line
 	4300 6850 4300 7700
 Wire Wire Line
@@ -2016,6 +2003,8 @@ Wire Wire Line
 	10600 9600 10750 9600
 Wire Wire Line
 	7600 6500 7600 10200
+Wire Wire Line
+	7600 10200 10750 10200
 Wire Bus Line
 	13500 3400 13500 4750
 Wire Bus Line
@@ -2052,6 +2041,4 @@ Wire Bus Line
 	17400 850  17400 12200
 Wire Bus Line
 	2000 4450 2000 6700
-Wire Wire Line
-	7600 10200 10750 10200
 $EndSCHEMATC
