@@ -4,7 +4,7 @@ EELAYER 29 0
 EELAYER END
 $Descr A3 16535 11693
 encoding utf-8
-Sheet 1 4
+Sheet 1 5
 Title "MC6809"
 Date "2019-10-11"
 Rev "A 1.0"
@@ -31,5 +31,11 @@ S 5000 3200 1750 1350
 U 5DDD939E
 F0 "Parallel Communication" 50
 F1 "ParallelComm.sch" 50
+$EndSheet
+$Sheet
+S 4250 6100 1600 1150
+U 5F293828
+F0 "AXI Bidirectional Communication" 50
+F1 "BidirectionComm.sch" 50
 $EndSheet
 $EndSCHEMATC
