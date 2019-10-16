@@ -21,19 +21,19 @@ F0 "UART Communication" 50
 F1 "UARTComm.sch" 50
 $EndSheet
 $Sheet
-S 1750 1500 1550 1150
+S 1600 5850 1550 1150
 U 5DAB0D48
 F0 "SPI VPIO Communication" 50
 F1 "VPIOComm.sch" 50
 $EndSheet
 $Sheet
-S 5000 3200 1750 1350
+S 1550 7600 1750 1350
 U 5DDD939E
 F0 "Parallel Communication" 50
 F1 "ParallelComm.sch" 50
 $EndSheet
 $Sheet
-S 4250 6100 1600 1150
+S 1500 1450 1600 1150
 U 5F293828
 F0 "AXI Bidirectional Communication" 50
 F1 "BidirectionComm.sch" 50

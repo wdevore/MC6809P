@@ -43,15 +43,15 @@ $EndComp
 $Comp
 L Switch:SW_Push SW?
 U 1 1 5F306907
-P 6600 10500
+P 7000 6550
 AR Path="/5DAB0D48/5F306907" Ref="SW?"  Part="1" 
 AR Path="/5F293828/5F306907" Ref="SW?"  Part="1" 
-F 0 "SW?" V 6646 10648 50  0000 L CNN
-F 1 "Reset" V 6555 10648 50  0000 L CNN
-F 2 "" H 6600 10700 50  0001 C CNN
-F 3 "~" H 6600 10700 50  0001 C CNN
-	1    6600 10500
-	1    0    0    -1  
+F 0 "SW?" V 7046 6698 50  0000 L CNN
+F 1 "Reset" V 6955 6698 50  0000 L CNN
+F 2 "" H 7000 6750 50  0001 C CNN
+F 3 "~" H 7000 6750 50  0001 C CNN
+	1    7000 6550
+	0    1    1    0   
 $EndComp
 $Comp
 L Device:R R?
@@ -139,8 +139,6 @@ Wire Wire Line
 	1100 2050 1100 2250
 NoConn ~ 2500 7250
 NoConn ~ 2500 7350
-Wire Wire Line
-	6400 10500 6350 10500
 $Comp
 L power:VCC #PWR?
 U 1 1 5F30693D
@@ -631,50 +629,43 @@ Wire Wire Line
 	3000 5050 3000 5250
 Wire Wire Line
 	6300 3350 6500 3350
-Connection ~ 6350 11250
-Wire Wire Line
-	6350 10500 6350 11250
-Wire Wire Line
-	6400 11250 6350 11250
-Wire Wire Line
-	7400 11250 7250 11250
 $Comp
 L power:GND #PWR?
 U 1 1 5F306A34
-P 6100 11350
+P 7000 6900
 AR Path="/5DAB0D48/5F306A34" Ref="#PWR?"  Part="1" 
 AR Path="/5F293828/5F306A34" Ref="#PWR?"  Part="1" 
-F 0 "#PWR?" H 6100 11100 50  0001 C CNN
-F 1 "GND" H 6105 11177 50  0000 C CNN
-F 2 "" H 6100 11350 50  0001 C CNN
-F 3 "" H 6100 11350 50  0001 C CNN
-	1    6100 11350
+F 0 "#PWR?" H 7000 6650 50  0001 C CNN
+F 1 "GND" H 7005 6727 50  0000 C CNN
+F 2 "" H 7000 6900 50  0001 C CNN
+F 3 "" H 7000 6900 50  0001 C CNN
+	1    7000 6900
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:CP1 C?
 U 1 1 5F306A44
-P 6550 11250
+P 5950 5600
 AR Path="/5DAB0D48/5F306A44" Ref="C?"  Part="1" 
 AR Path="/5F293828/5F306A44" Ref="C?"  Part="1" 
-F 0 "C?" H 6665 11296 50  0000 L CNN
-F 1 "10uF" H 6665 11205 50  0000 L CNN
-F 2 "" H 6550 11250 50  0001 C CNN
-F 3 "~" H 6550 11250 50  0001 C CNN
-	1    6550 11250
+F 0 "C?" H 6065 5646 50  0000 L CNN
+F 1 "10uF" H 6065 5555 50  0000 L CNN
+F 2 "" H 5950 5600 50  0001 C CNN
+F 3 "~" H 5950 5600 50  0001 C CNN
+	1    5950 5600
 	0    1    1    0   
 $EndComp
 $Comp
 L Diode:1N914 D?
 U 1 1 5F306A4A
-P 7100 11250
+P 6600 6000
 AR Path="/5DAB0D48/5F306A4A" Ref="D?"  Part="1" 
 AR Path="/5F293828/5F306A4A" Ref="D?"  Part="1" 
-F 0 "D?" V 7054 11329 50  0000 L CNN
-F 1 "1N914" V 7145 11329 50  0000 L CNN
-F 2 "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal" H 7100 11075 50  0001 C CNN
-F 3 "http://www.vishay.com/docs/85622/1n914.pdf" H 7100 11250 50  0001 C CNN
-	1    7100 11250
+F 0 "D?" V 6554 6079 50  0000 L CNN
+F 1 "1N914" V 6645 6079 50  0000 L CNN
+F 2 "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal" H 6600 5825 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/85622/1n914.pdf" H 6600 6000 50  0001 C CNN
+	1    6600 6000
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
@@ -1746,37 +1737,6 @@ Wire Notes Line
 	17250 9100 17250 9850
 Text Notes 17500 9500 0    50   ~ 0
 USB FTDI breakout
-Wire Wire Line
-	6700 11250 6900 11250
-Wire Wire Line
-	6800 10500 6900 10500
-Wire Wire Line
-	6900 10500 6900 11250
-Connection ~ 6900 11250
-Wire Wire Line
-	6900 11250 6950 11250
-Wire Wire Line
-	6900 10500 6900 6350
-Wire Wire Line
-	3500 6350 6900 6350
-Connection ~ 6900 10500
-$Comp
-L power:VCC #PWR?
-U 1 1 5F306A3A
-P 7400 11250
-AR Path="/5DAB0D48/5F306A3A" Ref="#PWR?"  Part="1" 
-AR Path="/5F293828/5F306A3A" Ref="#PWR?"  Part="1" 
-F 0 "#PWR?" H 7400 11100 50  0001 C CNN
-F 1 "VCC" H 7417 11423 50  0000 C CNN
-F 2 "" H 7400 11250 50  0001 C CNN
-F 3 "" H 7400 11250 50  0001 C CNN
-	1    7400 11250
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	6100 11250 6100 11350
-Wire Wire Line
-	6100 11250 6350 11250
 Text Notes 16350 11750 0    50   ~ 0
 Data In Ready (DIR) comes from host <-- to ~IRQ\nData Out Ready (DOR) goes to host -->\nHost reads buffer once SBC has loaded it using ~RE\nHost writes data to SBC's register using WR.
 Wire Wire Line
@@ -1860,6 +1820,114 @@ Wire Wire Line
 	15050 8050 15050 8200
 Wire Wire Line
 	14850 7850 14850 8200
+Wire Wire Line
+	10850 7850 14850 7850
+$Comp
+L power:VCC #PWR?
+U 1 1 5DB97CAC
+P 7150 5800
+AR Path="/5DAB0D48/5DB97CAC" Ref="#PWR?"  Part="1" 
+AR Path="/5F293828/5DB97CAC" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 7150 5650 50  0001 C CNN
+F 1 "VCC" H 7150 5950 50  0000 C CNN
+F 2 "" H 7150 5800 50  0001 C CNN
+F 3 "" H 7150 5800 50  0001 C CNN
+	1    7150 5800
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5DBA8381
+P 6600 5600
+AR Path="/5DAB0D48/5DBA8381" Ref="R?"  Part="1" 
+AR Path="/5F293828/5DBA8381" Ref="R?"  Part="1" 
+F 0 "R?" H 6670 5646 50  0000 L CNN
+F 1 "1K" H 6670 5555 50  0000 L CNN
+F 2 "" V 6530 5600 50  0001 C CNN
+F 3 "~" H 6600 5600 50  0001 C CNN
+	1    6600 5600
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7000 6750 7000 6900
+Wire Wire Line
+	3500 6350 6300 6350
+Wire Wire Line
+	6300 6350 6300 6000
+Connection ~ 6300 6350
+Wire Wire Line
+	6300 6350 7000 6350
+Connection ~ 6300 6000
+Wire Wire Line
+	6300 6000 6300 5600
+Wire Wire Line
+	6950 5600 6950 5900
+Wire Wire Line
+	6950 6000 6950 5900
+Connection ~ 6950 5900
+Wire Wire Line
+	6100 5600 6300 5600
+$Comp
+L power:GND #PWR?
+U 1 1 5DD51C07
+P 5700 5600
+AR Path="/5DAB0D48/5DD51C07" Ref="#PWR?"  Part="1" 
+AR Path="/5F293828/5DD51C07" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 5700 5350 50  0001 C CNN
+F 1 "GND" H 5705 5427 50  0000 C CNN
+F 2 "" H 5700 5600 50  0001 C CNN
+F 3 "" H 5700 5600 50  0001 C CNN
+	1    5700 5600
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5800 5600 5700 5600
+Wire Wire Line
+	6300 5600 6450 5600
+Wire Wire Line
+	6300 6000 6450 6000
+Wire Wire Line
+	6750 6000 6950 6000
+Wire Wire Line
+	6750 5600 6950 5600
+Wire Wire Line
+	6950 5900 7150 5900
+Wire Wire Line
+	7150 5900 7150 5800
+$Comp
+L Device:R R?
+U 1 1 5DE7D598
+P 1800 7250
+AR Path="/5DAB0D48/5DE7D598" Ref="R?"  Part="1" 
+AR Path="/5F293828/5DE7D598" Ref="R?"  Part="1" 
+F 0 "R?" H 1870 7296 50  0000 L CNN
+F 1 "4.7K" H 1870 7205 50  0000 L CNN
+F 2 "" V 1730 7250 50  0001 C CNN
+F 3 "~" H 1800 7250 50  0001 C CNN
+	1    1800 7250
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	2100 7550 1800 7550
+Wire Wire Line
+	1800 7550 1800 7400
+Connection ~ 2100 7550
+$Comp
+L power:VCC #PWR?
+U 1 1 5DEA07DF
+P 1800 6950
+AR Path="/5DAB0D48/5DEA07DF" Ref="#PWR?"  Part="1" 
+AR Path="/5F293828/5DEA07DF" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 1800 6800 50  0001 C CNN
+F 1 "VCC" H 1817 7123 50  0000 C CNN
+F 2 "" H 1800 6950 50  0001 C CNN
+F 3 "" H 1800 6950 50  0001 C CNN
+	1    1800 6950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1800 6950 1800 7100
+Connection ~ 6300 5600
 Wire Bus Line
 	12550 3650 12550 3950
 Wire Bus Line
@@ -1888,6 +1956,6 @@ Wire Bus Line
 	11600 7650 11600 11350
 Wire Bus Line
 	2200 4600 2200 6850
-Wire Wire Line
-	10850 7850 14850 7850
+Text Notes 1550 7100 0    50   ~ 0
+Bias
 $EndSCHEMATC
