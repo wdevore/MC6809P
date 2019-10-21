@@ -364,8 +364,55 @@ Wire Wire Line
 	8200 3350 8200 3650
 Wire Wire Line
 	8200 5450 8200 5550
+$Comp
+L Connector_Generic:Conn_01x15 J?
+U 1 1 5DADCB67
+P 11300 4700
+F 0 "J?" H 11218 5617 50  0000 C CNN
+F 1 "USB to GPIO" H 11218 5526 50  0000 C CNN
+F 2 "" H 11300 4700 50  0001 C CNN
+F 3 "~" H 11300 4700 50  0001 C CNN
+	1    11300 4700
+	-1   0    0    -1  
+$EndComp
+Text GLabel 11500 4000 2    50   BiDi ~ 0
+C0
+Text GLabel 11500 4100 2    50   BiDi ~ 0
+C1
+Text GLabel 11500 4200 2    50   BiDi ~ 0
+C2
+Text GLabel 11500 4300 2    50   BiDi ~ 0
+C3
+Text GLabel 11500 4400 2    50   BiDi ~ 0
+C4
+Text GLabel 11500 4500 2    50   BiDi ~ 0
+C5
+Text GLabel 11500 4600 2    50   BiDi ~ 0
+C6
+Text GLabel 11500 4700 2    50   BiDi ~ 0
+C7
+Text GLabel 11500 4800 2    50   Input ~ 0
+D4
+Text GLabel 11500 4900 2    50   Input ~ 0
+D5
+Text GLabel 11500 5000 2    50   Input ~ 0
+D6
+Text GLabel 11500 5300 2    50   Input ~ 0
+CS
+Text GLabel 11500 5100 2    50   Input ~ 0
+MOSI
+Text GLabel 11500 5200 2    50   Input ~ 0
+SCK
 Wire Bus Line
 	6200 3300 6200 6200
 Wire Bus Line
 	7600 3300 7600 5150
+Text Notes 12150 5150 0    50   ~ 0
+Mode 0, MSB First
+Text Notes 11750 5150 0    50   ~ 0
+D1
+Text Notes 11750 5250 0    50   ~ 0
+D0
+Text Notes 11750 5350 0    50   ~ 0
+D3
 $EndSCHEMATC
