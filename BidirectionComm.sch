@@ -4,7 +4,7 @@ EELAYER 29 0
 EELAYER END
 $Descr A2 23386 16535
 encoding utf-8
-Sheet 5 5
+Sheet 5 6
 Title ""
 Date ""
 Rev ""
@@ -1928,6 +1928,8 @@ $EndComp
 Wire Wire Line
 	1800 6950 1800 7100
 Connection ~ 6300 5600
+Text Notes 1550 7100 0    50   ~ 0
+Bias
 Wire Bus Line
 	12550 3650 12550 3950
 Wire Bus Line
@@ -1956,6 +1958,4 @@ Wire Bus Line
 	11600 7650 11600 11350
 Wire Bus Line
 	2200 4600 2200 6850
-Text Notes 1550 7100 0    50   ~ 0
-Bias
 $EndSCHEMATC
