@@ -1160,14 +1160,14 @@ Connection ~ 9450 7600
 Wire Wire Line
 	4500 7000 4500 7850
 Wire Wire Line
-	4500 7850 8250 7850
+	4500 7850 6350 7850
 Wire Wire Line
 	8250 7850 8250 10050
 Connection ~ 4500 7000
 Wire Wire Line
 	4500 7000 4700 7000
 Text Notes 19300 7650 0    50   ~ 0
-0x8001 = Write to IO Out\n0x8002 = Read from IO In\n0x8003 = Write, Data out ready (DOR)
+0x8001 = Write to IO Out\n0x8002 = Read from IO In\n0x8003 = Write, Data out ready (DOR)\n0x8004 = 1 Bit token handshake
 Wire Wire Line
 	15000 4900 15450 4900
 Wire Wire Line
@@ -1451,7 +1451,7 @@ L Connector_Generic:Conn_01x16 J?
 U 1 1 5F524086
 P 16450 9850
 F 0 "J?" H 16400 10650 50  0000 L CNN
-F 1 "Host" H 16530 9751 50  0000 L CNN
+F 1 "IO Bridge" H 16530 9751 50  0000 L CNN
 F 2 "" H 16450 9850 50  0001 C CNN
 F 3 "~" H 16450 9850 50  0001 C CNN
 	1    16450 9850
@@ -1474,9 +1474,9 @@ Wire Wire Line
 Wire Wire Line
 	16250 9850 15900 9850
 Text Label 15950 10550 0    50   ~ 0
-~DOR
+DOR
 Text Label 15950 10650 0    50   ~ 0
-~DIR
+DPR
 Text Label 15950 9150 0    50   ~ 0
 D0
 Text Label 15950 9250 0    50   ~ 0
@@ -1541,28 +1541,20 @@ Entry Wire Line
 	13050 10850 13150 10750
 Entry Wire Line
 	13050 10750 13150 10650
-Text Label 15950 10350 0    50   ~ 0
-~RE
 Wire Wire Line
 	11800 9600 11900 9600
 Text Label 15950 10450 0    50   ~ 0
-WR
-Wire Wire Line
-	15650 10450 16250 10450
+WR|~RE
 Wire Wire Line
 	11800 9600 11800 10350
-Wire Wire Line
-	15650 10450 15650 11650
 Wire Wire Line
 	12900 11750 13200 11750
 Wire Wire Line
 	13200 11750 13200 12300
 Wire Wire Line
-	12900 11650 15650 11650
+	12900 11650 14950 11650
 Wire Wire Line
 	11900 9500 10950 9500
-Wire Wire Line
-	16250 10350 14950 10350
 Wire Wire Line
 	15300 10650 15300 10050
 Wire Wire Line
@@ -1756,8 +1748,6 @@ Text Notes 16550 10600 0    50   ~ 0
 -->
 Text Notes 16550 10500 0    50   ~ 0
 <--
-Text Notes 16550 10400 0    50   ~ 0
-<--
 $Comp
 L 74xx:74LS76 U?
 U 1 1 5FCB9509
@@ -1771,7 +1761,6 @@ F 3 "http://www.ti.com/lit/gpn/sn74LS76" H 14950 9400 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	14950 10350 14950 9700
-Connection ~ 14950 10350
 Wire Wire Line
 	14950 10350 11800 10350
 $Comp
@@ -1930,6 +1919,41 @@ Wire Wire Line
 Connection ~ 6300 5600
 Text Notes 1550 7100 0    50   ~ 0
 Bias
+Connection ~ 14950 10350
+Wire Wire Line
+	14950 10350 14950 10450
+Connection ~ 14950 10450
+Wire Wire Line
+	14950 10450 14950 11650
+Wire Wire Line
+	14950 10450 16250 10450
+$Comp
+L 74xx:74LS04 U?
+U 2 1 5DC6ABFC
+P 6650 7850
+F 0 "U?" H 6650 7533 50  0000 C CNN
+F 1 "74LS04" H 6650 7624 50  0000 C CNN
+F 2 "" H 6650 7850 50  0001 C CNN
+F 3 "http://www.ti.com/lit/gpn/sn74LS04" H 6650 7850 50  0001 C CNN
+	2    6650 7850
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	6950 7850 8250 7850
+Text Notes 19300 8150 0    50   ~ 0
+Host or SBC check token first. If it already set then\neach waits. Once cleared the first to grab it\ncan transmit.
+Wire Wire Line
+	16250 10350 15950 10350
+Text Label 15950 10350 0    50   ~ 0
+DRE
+Text Notes 16550 10400 0    50   ~ 0
+-->
+Text Notes 16750 10400 0    50   ~ 0
+Signals Host byte has been read.
+Text Notes 16750 10700 0    50   ~ 0
+Signals SBC a byte is present.
+Text Notes 16750 10600 0    50   ~ 0
+Signals Host a byte is present.
 Wire Bus Line
 	12550 3650 12550 3950
 Wire Bus Line
