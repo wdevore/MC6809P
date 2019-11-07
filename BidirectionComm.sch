@@ -4,7 +4,7 @@ EELAYER 29 0
 EELAYER END
 $Descr A2 23386 16535
 encoding utf-8
-Sheet 5 6
+Sheet 5 7
 Title ""
 Date ""
 Rev ""
@@ -1954,6 +1954,7 @@ Text Notes 16750 10700 0    50   ~ 0
 Signals SBC a byte is present.
 Text Notes 16750 10600 0    50   ~ 0
 Signals Host a byte is present.
+NoConn ~ 4950 9000
 Wire Bus Line
 	12550 3650 12550 3950
 Wire Bus Line
