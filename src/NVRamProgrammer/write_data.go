@@ -86,10 +86,15 @@ func writeData(config map[string]interface{}) {
 	// Default all to LOW
 	f.SetPortCPins(0x00)
 
-	// FM1808 NVRam control pins
-	f.ConfigPinNoWrite(ftdi.D4, gpio.Output) // ~OE = Read = Pin22 on FM1801
-	f.ConfigPinNoWrite(ftdi.D5, gpio.Output) // ~WE = Write = Pin27
-	f.ConfigPinNoWrite(ftdi.D6, gpio.Output) // ~CE = Select = Pin20
+	// Note: FM1808 control pins.
+	// ~OE = Read = Pin22 on FM1808
+	// ~WE = Write = Pin27
+	// ~CE = Select = Pin20
+
+	// TinyFPGA-B2 input control pins        // Outputs routed to fpga.
+	f.ConfigPinNoWrite(ftdi.D4, gpio.Output) // Pin 8   Start cycle
+	f.ConfigPinNoWrite(ftdi.D5, gpio.Output) // Pin 9   Read sequence
+	f.ConfigPinNoWrite(ftdi.D6, gpio.Output) // Pin 10  Write sequence
 
 	// Default states to inactive.
 	f.SetPortDPins(0xFF)
@@ -174,33 +179,24 @@ func processWriteBlock(scanner *bufio.Scanner, spid *spi.FtdiSPI, f *ftdi.FTDI23
 			}
 
 			for _, byto := range bytes {
-				f.OutputHigh(ftdi.D4)
-				// De-Assert Ram Write = ~WE
-				f.OutputHigh(ftdi.D5)
-
-				// De-Assert Ram Select = ~CE
-				f.OutputHigh(ftdi.D6)
-
+				// First setup Address and data lines.
 				setAddress(address, spid)
-
-				// Write Cycle Timing: WE controlled timing.
-				// Assert ~CE first. latches address
-				f.OutputLow(ftdi.D6)
 
 				setWriteData(byto, f)
 
-				// Then ~WE
-				f.OutputLow(ftdi.D5)
-				f.OutputLow(ftdi.D4)
+				// Tell FPGA to performce and write cycle sequence.
+				// Start cycle
+				f.SetPin(ftdi.D4, gpio.High)
+				// Set and output to mpsse pins
+				f.OutputHigh(ftdi.D6)
+
+				// End cycle
+				f.SetPin(ftdi.D4, gpio.Low)
+				f.OutputLow(ftdi.D6)
 
 				// fmt.Printf("Writing: (%d) %d\n", address, byto)
 				address++
 			}
-
-			// De-Assert Select
-			f.OutputHigh(ftdi.D6)
-			// De-Assert Write
-			f.OutputHigh(ftdi.D5)
 		}
 	}
 
