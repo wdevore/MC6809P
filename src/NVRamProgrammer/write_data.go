@@ -9,6 +9,7 @@ import (
 	"os/signal"
 	"strings"
 	"syscall"
+	"time"
 
 	"github.com/wdevore/hardware/ftdi"
 	"github.com/wdevore/hardware/gpio"
@@ -83,9 +84,6 @@ func writeData(config map[string]interface{}) {
 	f.ConfigPinNoWrite(ftdi.C6, gpio.Output)
 	f.ConfigPinNoWrite(ftdi.C7, gpio.Output)
 
-	// Default all to LOW
-	f.SetPortCPins(0x00)
-
 	// Note: FM1808 control pins.
 	// ~OE = Read = Pin22 on FM1808
 	// ~WE = Write = Pin27
@@ -95,11 +93,14 @@ func writeData(config map[string]interface{}) {
 	f.ConfigPinNoWrite(ftdi.D4, gpio.Output) // Pin 8   Start cycle
 	f.ConfigPinNoWrite(ftdi.D5, gpio.Output) // Pin 9   Read sequence
 	f.ConfigPinNoWrite(ftdi.D6, gpio.Output) // Pin 10  Write sequence
+	f.ConfigPinNoWrite(ftdi.D7, gpio.Output) // Pin 7   Wait extending
 
-	// Default states to inactive.
-	f.SetPortDPins(0xFF)
+	// Default all to LOW
+	f.SetPortDPins(0x00)
 
 	f.WriteGPIO()
+
+	time.Sleep(time.Millisecond * 100)
 
 	// Assert SPI CS (aka pin D4) for the initial condition.
 	// 74LS595 is rising-edge triggered which means we set the
@@ -184,10 +185,10 @@ func processWriteBlock(scanner *bufio.Scanner, spid *spi.FtdiSPI, f *ftdi.FTDI23
 
 				setWriteData(byto, f)
 
-				// Tell FPGA to performce and write cycle sequence.
-				// Start cycle
+				// Tell FPGA to perform a write cycle sequence.
 				f.SetPin(ftdi.D4, gpio.High)
-				// Set and output to mpsse pins
+
+				// Indicate Write
 				f.OutputHigh(ftdi.D6)
 
 				// End cycle

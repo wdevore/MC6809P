@@ -9,6 +9,7 @@ import (
 	"os/signal"
 	"strings"
 	"syscall"
+	"time"
 
 	"github.com/wdevore/hardware/ftdi"
 	"github.com/wdevore/hardware/gpio"
@@ -83,18 +84,18 @@ func verifyData(config map[string]interface{}) {
 	f.ConfigPinNoWrite(ftdi.C6, gpio.Input)
 	f.ConfigPinNoWrite(ftdi.C7, gpio.Input)
 
-	// Default all to LOW
-	f.SetPortCPins(0x00)
+	// TinyFPGA-B2 input control pins        // Outputs routed to fpga.
+	f.ConfigPinNoWrite(ftdi.D4, gpio.Output) // Pin 8   Start cycle
+	f.ConfigPinNoWrite(ftdi.D5, gpio.Output) // Pin 9   Read sequence
+	f.ConfigPinNoWrite(ftdi.D6, gpio.Output) // Pin 10  Write sequence
+	f.ConfigPinNoWrite(ftdi.D7, gpio.Output) // Pin 7   Wait extending
 
-	// FM1808 NVRam control pins
-	f.ConfigPinNoWrite(ftdi.D4, gpio.Output) // ~OE = Read
-	f.ConfigPinNoWrite(ftdi.D5, gpio.Output) // ~WE = Write
-	f.ConfigPinNoWrite(ftdi.D6, gpio.Output) // ~CE = Select
-
-	// Default states to inactive.
-	f.SetPortDPins(0xFF)
+	// Default all to LOW (i.e. in-active)
+	f.SetPortDPins(0x00)
 
 	f.WriteGPIO()
+
+	time.Sleep(time.Millisecond * 100)
 
 	// Assert SPI CS (aka pin D4) for the initial condition.
 	// 74LS595 is rising-edge triggered which means we set the
@@ -131,7 +132,9 @@ func verifyData(config map[string]interface{}) {
 
 func readData(f *ftdi.FTDI232H) (data byte) {
 	d := f.ReadInputs()
-	fmt.Println("d: ", d)
+	// d = f.ReadInputs()
+	// fmt.Printf("d: %#x\n", d)
+	// fmt.Printf("b: %#x\n", byte((d&0xFF00)>>8))
 	return byte((d & 0xFF00) >> 8)
 }
 
@@ -154,6 +157,12 @@ func processReadBlock(scanner *bufio.Scanner, spid *spi.FtdiSPI, f *ftdi.FTDI232
 	address := uint16(hexes[0])<<8 | uint16(hexes[1])
 
 	fmt.Printf("Reading block at: %d <0x%s>\n", address, fields[1])
+	// f.OutputHigh(ftdi.D5)
+	// f.OutputLow(ftdi.D5)
+	// f.OutputHigh(ftdi.D5)
+	// f.OutputLow(ftdi.D5)
+	// f.OutputHigh(ftdi.D5)
+	// f.OutputLow(ftdi.D5)
 
 	for scanner.Scan() {
 		line := scanner.Text()
@@ -174,33 +183,41 @@ func processReadBlock(scanner *bufio.Scanner, spid *spi.FtdiSPI, f *ftdi.FTDI232
 			}
 
 			for _, byto := range bytes {
-				// De-Assert Ram Select = ~CE
-				f.OutputHigh(ftdi.D6)
-				// De-Assert Ram Read = ~OE
-				f.OutputHigh(ftdi.D4)
-
+				// First setup Address
 				setAddress(address, spid)
 
-				// Assert Select = ~CE, latches address
-				f.OutputLow(ftdi.D6)
+				// We also need to wait because of the delays
+				// between USB and GPIO.
 
-				// And finally read data by asserting the Read
-				// (aka pin 22 on FM1808 chip). = ~OE
-				f.OutputLow(ftdi.D5)
+				f.OutputHigh(ftdi.D7)
+
+				// Tell FPGA to perform a read cycle sequence.
+				f.SetPin(ftdi.D4, gpio.High)
+				// Indicate Read
+				f.OutputHigh(ftdi.D5)
+
+				// This takes upward of 30ms!
+				fmt.Printf("Expect: %#x\n", byto)
 
 				data := readData(f)
 
 				if data != byto {
-					fmt.Printf("Verify failed at: %d, Expected: %d, got: %d\n", address, byto, data)
+					fmt.Printf("Verify failed at: <%d>, got: %#x\n", address, data)
 				}
+
+				// ----------------------------------------------
+				// End cycle
+				// ----------------------------------------------
+				// Now that we have the data we stop waiting
+				// f.SetPin(ftdi.D7, gpio.Low) // De-activate Wait
+				f.OutputLow(ftdi.D7)
+
+				// End read sequence.
+				f.SetPin(ftdi.D4, gpio.Low)
+				f.OutputLow(ftdi.D5)
 
 				address++
 			}
-
-			// De-Assert Select
-			f.OutputHigh(ftdi.D6)
-			// De-Assert Write
-			f.OutputHigh(ftdi.D5)
 		}
 	}
 

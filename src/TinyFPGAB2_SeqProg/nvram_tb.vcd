@@ -1,0 +1,730 @@
+$date
+	Sat Nov  2 16:27:01 2019
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	10ps
+$end
+$scope module ICESTORM_LC $end
+$var wire 1 ! CEN $end
+$var wire 1 " CIN $end
+$var wire 1 # CLK $end
+$var wire 1 $ COUT $end
+$var wire 1 % I0 $end
+$var wire 1 & I1 $end
+$var wire 1 ' I2 $end
+$var wire 1 ( I3 $end
+$var wire 1 ) LO $end
+$var wire 1 * O $end
+$var wire 1 + SR $end
+$var wire 1 , polarized_clk $end
+$var wire 8 - lut_s3 [7:0] $end
+$var wire 4 . lut_s2 [3:0] $end
+$var wire 2 / lut_s1 [1:0] $end
+$var wire 1 0 lut_o $end
+$var reg 1 1 o_reg $end
+$upscope $end
+$scope module NVRamMemCycle_tb $end
+$var wire 1 2 pulse $end
+$var wire 1 3 lt $end
+$var wire 1 4 gt $end
+$var wire 1 5 eq $end
+$var wire 3 6 cntOut [2:0] $end
+$var reg 1 7 clk $end
+$var reg 3 8 compRst [2:0] $end
+$var reg 1 9 enable $end
+$scope module comp $end
+$var wire 3 : b [2:0] $end
+$var wire 1 3 lt $end
+$var wire 1 4 gt $end
+$var wire 1 5 eq $end
+$var wire 3 ; a [2:0] $end
+$upscope $end
+$scope module upcnt $end
+$var wire 1 7 clk $end
+$var wire 1 9 enable $end
+$var wire 1 5 reset $end
+$var reg 3 < out [2:0] $end
+$upscope $end
+$upscope $end
+$scope module SB_CARRY $end
+$var wire 1 = CI $end
+$var wire 1 > CO $end
+$var wire 1 ? I0 $end
+$var wire 1 @ I1 $end
+$upscope $end
+$scope module SB_DFF $end
+$var wire 1 A C $end
+$var wire 1 B D $end
+$var reg 1 C Q $end
+$upscope $end
+$scope module SB_DFFE $end
+$var wire 1 D C $end
+$var wire 1 E D $end
+$var wire 1 F E $end
+$var reg 1 G Q $end
+$upscope $end
+$scope module SB_DFFER $end
+$var wire 1 H C $end
+$var wire 1 I D $end
+$var wire 1 J E $end
+$var wire 1 K R $end
+$var reg 1 L Q $end
+$upscope $end
+$scope module SB_DFFES $end
+$var wire 1 M C $end
+$var wire 1 N D $end
+$var wire 1 O E $end
+$var wire 1 P S $end
+$var reg 1 Q Q $end
+$upscope $end
+$scope module SB_DFFESR $end
+$var wire 1 R C $end
+$var wire 1 S D $end
+$var wire 1 T E $end
+$var wire 1 U R $end
+$var reg 1 V Q $end
+$upscope $end
+$scope module SB_DFFESS $end
+$var wire 1 W C $end
+$var wire 1 X D $end
+$var wire 1 Y E $end
+$var wire 1 Z S $end
+$var reg 1 [ Q $end
+$upscope $end
+$scope module SB_DFFN $end
+$var wire 1 \ C $end
+$var wire 1 ] D $end
+$var reg 1 ^ Q $end
+$upscope $end
+$scope module SB_DFFNE $end
+$var wire 1 _ C $end
+$var wire 1 ` D $end
+$var wire 1 a E $end
+$var reg 1 b Q $end
+$upscope $end
+$scope module SB_DFFNER $end
+$var wire 1 c C $end
+$var wire 1 d D $end
+$var wire 1 e E $end
+$var wire 1 f R $end
+$var reg 1 g Q $end
+$upscope $end
+$scope module SB_DFFNES $end
+$var wire 1 h C $end
+$var wire 1 i D $end
+$var wire 1 j E $end
+$var wire 1 k S $end
+$var reg 1 l Q $end
+$upscope $end
+$scope module SB_DFFNESR $end
+$var wire 1 m C $end
+$var wire 1 n D $end
+$var wire 1 o E $end
+$var wire 1 p R $end
+$var reg 1 q Q $end
+$upscope $end
+$scope module SB_DFFNESS $end
+$var wire 1 r C $end
+$var wire 1 s D $end
+$var wire 1 t E $end
+$var wire 1 u S $end
+$var reg 1 v Q $end
+$upscope $end
+$scope module SB_DFFNR $end
+$var wire 1 w C $end
+$var wire 1 x D $end
+$var wire 1 y R $end
+$var reg 1 z Q $end
+$upscope $end
+$scope module SB_DFFNS $end
+$var wire 1 { C $end
+$var wire 1 | D $end
+$var wire 1 } S $end
+$var reg 1 ~ Q $end
+$upscope $end
+$scope module SB_DFFNSR $end
+$var wire 1 !" C $end
+$var wire 1 "" D $end
+$var wire 1 #" R $end
+$var reg 1 $" Q $end
+$upscope $end
+$scope module SB_DFFNSS $end
+$var wire 1 %" C $end
+$var wire 1 &" D $end
+$var wire 1 '" S $end
+$var reg 1 (" Q $end
+$upscope $end
+$scope module SB_DFFR $end
+$var wire 1 )" C $end
+$var wire 1 *" D $end
+$var wire 1 +" R $end
+$var reg 1 ," Q $end
+$upscope $end
+$scope module SB_DFFS $end
+$var wire 1 -" C $end
+$var wire 1 ." D $end
+$var wire 1 /" S $end
+$var reg 1 0" Q $end
+$upscope $end
+$scope module SB_DFFSR $end
+$var wire 1 1" C $end
+$var wire 1 2" D $end
+$var wire 1 3" R $end
+$var reg 1 4" Q $end
+$upscope $end
+$scope module SB_DFFSS $end
+$var wire 1 5" C $end
+$var wire 1 6" D $end
+$var wire 1 7" S $end
+$var reg 1 8" Q $end
+$upscope $end
+$scope module SB_GB $end
+$var wire 1 9" GLOBAL_BUFFER_OUTPUT $end
+$var wire 1 :" USER_SIGNAL_TO_GLOBAL_BUFFER $end
+$upscope $end
+$scope module SB_GB_IO $end
+$var wire 1 ;" CLOCK_ENABLE $end
+$var wire 1 <" D_OUT_0 $end
+$var wire 1 =" D_OUT_1 $end
+$var wire 1 >" GLOBAL_BUFFER_OUTPUT $end
+$var wire 1 ?" INPUT_CLK $end
+$var wire 1 @" LATCH_INPUT_VALUE $end
+$var wire 1 A" OUTPUT_CLK $end
+$var wire 1 B" OUTPUT_ENABLE $end
+$var wire 1 C" PACKAGE_PIN $end
+$var wire 1 D" D_IN_1 $end
+$var wire 1 E" D_IN_0 $end
+$scope module IO $end
+$var wire 1 ;" CLOCK_ENABLE $end
+$var wire 1 E" D_IN_0 $end
+$var wire 1 D" D_IN_1 $end
+$var wire 1 <" D_OUT_0 $end
+$var wire 1 =" D_OUT_1 $end
+$var wire 1 ?" INPUT_CLK $end
+$var wire 1 @" LATCH_INPUT_VALUE $end
+$var wire 1 A" OUTPUT_CLK $end
+$var wire 1 B" OUTPUT_ENABLE $end
+$var wire 1 C" PACKAGE_PIN $end
+$var reg 1 F" din_0 $end
+$var reg 1 G" din_1 $end
+$var reg 1 H" din_q_0 $end
+$var reg 1 I" din_q_1 $end
+$var reg 1 J" dout $end
+$var reg 1 K" dout_q_0 $end
+$var reg 1 L" dout_q_1 $end
+$var reg 1 M" outclk_delayed_1 $end
+$var reg 1 N" outclk_delayed_2 $end
+$var reg 1 O" outena_q $end
+$scope begin genblk1 $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module SB_LUT4 $end
+$var wire 1 P" I0 $end
+$var wire 1 Q" I1 $end
+$var wire 1 R" I2 $end
+$var wire 1 S" I3 $end
+$var wire 8 T" s3 [7:0] $end
+$var wire 4 U" s2 [3:0] $end
+$var wire 2 V" s1 [1:0] $end
+$var wire 1 W" O $end
+$upscope $end
+$scope module SB_PLL40_2F_CORE $end
+$var wire 1 X" BYPASS $end
+$var wire 8 Y" DYNAMICDELAY [7:0] $end
+$var wire 1 Z" EXTFEEDBACK $end
+$var wire 1 [" LATCHINPUTVALUE $end
+$var wire 1 \" LOCK $end
+$var wire 1 ]" PLLOUTCOREA $end
+$var wire 1 ^" PLLOUTCOREB $end
+$var wire 1 _" PLLOUTGLOBALA $end
+$var wire 1 `" PLLOUTGLOBALB $end
+$var wire 1 a" REFERENCECLK $end
+$var wire 1 b" RESETB $end
+$var wire 1 c" SCLK $end
+$var wire 1 d" SDI $end
+$var wire 1 e" SDO $end
+$upscope $end
+$scope module SB_PLL40_2F_PAD $end
+$var wire 1 f" BYPASS $end
+$var wire 8 g" DYNAMICDELAY [7:0] $end
+$var wire 1 h" EXTFEEDBACK $end
+$var wire 1 i" LATCHINPUTVALUE $end
+$var wire 1 j" LOCK $end
+$var wire 1 k" PACKAGEPIN $end
+$var wire 1 l" PLLOUTCOREA $end
+$var wire 1 m" PLLOUTCOREB $end
+$var wire 1 n" PLLOUTGLOBALA $end
+$var wire 1 o" PLLOUTGLOBALB $end
+$var wire 1 p" RESETB $end
+$var wire 1 q" SCLK $end
+$var wire 1 r" SDI $end
+$var wire 1 s" SDO $end
+$upscope $end
+$scope module SB_PLL40_2_PAD $end
+$var wire 1 t" BYPASS $end
+$var wire 8 u" DYNAMICDELAY [7:0] $end
+$var wire 1 v" EXTFEEDBACK $end
+$var wire 1 w" LATCHINPUTVALUE $end
+$var wire 1 x" LOCK $end
+$var wire 1 y" PACKAGEPIN $end
+$var wire 1 z" PLLOUTCOREA $end
+$var wire 1 {" PLLOUTCOREB $end
+$var wire 1 |" PLLOUTGLOBALA $end
+$var wire 1 }" PLLOUTGLOBALB $end
+$var wire 1 ~" RESETB $end
+$var wire 1 !# SCLK $end
+$var wire 1 "# SDI $end
+$var wire 1 ## SDO $end
+$upscope $end
+$scope module SB_PLL40_CORE $end
+$var wire 1 $# BYPASS $end
+$var wire 8 %# DYNAMICDELAY [7:0] $end
+$var wire 1 &# EXTFEEDBACK $end
+$var wire 1 '# LATCHINPUTVALUE $end
+$var wire 1 (# LOCK $end
+$var wire 1 )# PLLOUTCORE $end
+$var wire 1 *# PLLOUTGLOBAL $end
+$var wire 1 +# REFERENCECLK $end
+$var wire 1 ,# RESETB $end
+$var wire 1 -# SCLK $end
+$var wire 1 .# SDI $end
+$var wire 1 /# SDO $end
+$upscope $end
+$scope module SB_PLL40_PAD $end
+$var wire 1 0# BYPASS $end
+$var wire 8 1# DYNAMICDELAY [7:0] $end
+$var wire 1 2# EXTFEEDBACK $end
+$var wire 1 3# LATCHINPUTVALUE $end
+$var wire 1 4# LOCK $end
+$var wire 1 5# PACKAGEPIN $end
+$var wire 1 6# PLLOUTCORE $end
+$var wire 1 7# PLLOUTGLOBAL $end
+$var wire 1 8# RESETB $end
+$var wire 1 9# SCLK $end
+$var wire 1 :# SDI $end
+$var wire 1 ;# SDO $end
+$upscope $end
+$scope module SB_RAM40_4KNR $end
+$var wire 16 <# MASK [15:0] $end
+$var wire 11 =# RADDR [10:0] $end
+$var wire 1 ># RCLKE $end
+$var wire 1 ?# RCLKN $end
+$var wire 1 @# RE $end
+$var wire 11 A# WADDR [10:0] $end
+$var wire 1 B# WCLK $end
+$var wire 1 C# WCLKE $end
+$var wire 16 D# WDATA [15:0] $end
+$var wire 1 E# WE $end
+$var wire 16 F# RDATA [15:0] $end
+$scope module RAM $end
+$var wire 16 G# MASK [15:0] $end
+$var wire 11 H# RADDR [10:0] $end
+$var wire 1 I# RCLK $end
+$var wire 1 ># RCLKE $end
+$var wire 1 @# RE $end
+$var wire 16 J# RMASK_I [15:0] $end
+$var wire 11 K# WADDR [10:0] $end
+$var wire 1 B# WCLK $end
+$var wire 1 C# WCLKE $end
+$var wire 16 L# WDATA [15:0] $end
+$var wire 1 E# WE $end
+$var wire 16 M# WMASK_I [15:0] $end
+$var wire 16 N# WDATA_I [15:0] $end
+$var wire 16 O# RDATA [15:0] $end
+$var reg 16 P# RDATA_I [15:0] $end
+$var integer 32 Q# i [31:0] $end
+$scope begin genblk1 $end
+$upscope $end
+$scope begin genblk2 $end
+$upscope $end
+$scope begin genblk3 $end
+$upscope $end
+$scope begin genblk4 $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module SB_RAM40_4KNRNW $end
+$var wire 16 R# MASK [15:0] $end
+$var wire 11 S# RADDR [10:0] $end
+$var wire 1 T# RCLKE $end
+$var wire 1 U# RCLKN $end
+$var wire 1 V# RE $end
+$var wire 11 W# WADDR [10:0] $end
+$var wire 1 X# WCLKE $end
+$var wire 1 Y# WCLKN $end
+$var wire 16 Z# WDATA [15:0] $end
+$var wire 1 [# WE $end
+$var wire 16 \# RDATA [15:0] $end
+$scope module RAM $end
+$var wire 16 ]# MASK [15:0] $end
+$var wire 11 ^# RADDR [10:0] $end
+$var wire 1 _# RCLK $end
+$var wire 1 T# RCLKE $end
+$var wire 1 V# RE $end
+$var wire 16 `# RMASK_I [15:0] $end
+$var wire 11 a# WADDR [10:0] $end
+$var wire 1 b# WCLK $end
+$var wire 1 X# WCLKE $end
+$var wire 16 c# WDATA [15:0] $end
+$var wire 1 [# WE $end
+$var wire 16 d# WMASK_I [15:0] $end
+$var wire 16 e# WDATA_I [15:0] $end
+$var wire 16 f# RDATA [15:0] $end
+$var reg 16 g# RDATA_I [15:0] $end
+$var integer 32 h# i [31:0] $end
+$scope begin genblk1 $end
+$upscope $end
+$scope begin genblk2 $end
+$upscope $end
+$scope begin genblk3 $end
+$upscope $end
+$scope begin genblk4 $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module SB_RAM40_4KNW $end
+$var wire 16 i# MASK [15:0] $end
+$var wire 11 j# RADDR [10:0] $end
+$var wire 1 k# RCLK $end
+$var wire 1 l# RCLKE $end
+$var wire 1 m# RE $end
+$var wire 11 n# WADDR [10:0] $end
+$var wire 1 o# WCLKE $end
+$var wire 1 p# WCLKN $end
+$var wire 16 q# WDATA [15:0] $end
+$var wire 1 r# WE $end
+$var wire 16 s# RDATA [15:0] $end
+$scope module RAM $end
+$var wire 16 t# MASK [15:0] $end
+$var wire 11 u# RADDR [10:0] $end
+$var wire 1 k# RCLK $end
+$var wire 1 l# RCLKE $end
+$var wire 1 m# RE $end
+$var wire 16 v# RMASK_I [15:0] $end
+$var wire 11 w# WADDR [10:0] $end
+$var wire 1 x# WCLK $end
+$var wire 1 o# WCLKE $end
+$var wire 16 y# WDATA [15:0] $end
+$var wire 1 r# WE $end
+$var wire 16 z# WMASK_I [15:0] $end
+$var wire 16 {# WDATA_I [15:0] $end
+$var wire 16 |# RDATA [15:0] $end
+$var reg 16 }# RDATA_I [15:0] $end
+$var integer 32 ~# i [31:0] $end
+$scope begin genblk1 $end
+$upscope $end
+$scope begin genblk2 $end
+$upscope $end
+$scope begin genblk3 $end
+$upscope $end
+$scope begin genblk4 $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module SB_WARMBOOT $end
+$var wire 1 !$ BOOT $end
+$var wire 1 "$ S0 $end
+$var wire 1 #$ S1 $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+z#$
+z"$
+z!$
+b10000 ~#
+bx }#
+bx |#
+bz {#
+bz z#
+bz y#
+zx#
+bz w#
+b0 v#
+bz u#
+bz t#
+bx s#
+zr#
+bz q#
+zp#
+zo#
+bz n#
+zm#
+zl#
+zk#
+bz j#
+bz i#
+b10000 h#
+bx g#
+bx f#
+bz e#
+bz d#
+bz c#
+zb#
+bz a#
+b0 `#
+z_#
+bz ^#
+bz ]#
+bx \#
+z[#
+bz Z#
+zY#
+zX#
+bz W#
+zV#
+zU#
+zT#
+bz S#
+bz R#
+b10000 Q#
+bx P#
+bx O#
+bz N#
+bz M#
+bz L#
+bz K#
+b0 J#
+zI#
+bz H#
+bz G#
+bx F#
+zE#
+bz D#
+zC#
+zB#
+bz A#
+z@#
+z?#
+z>#
+bz =#
+bz <#
+z;#
+z:#
+z9#
+z8#
+z7#
+z6#
+z5#
+z4#
+z3#
+z2#
+bz 1#
+z0#
+z/#
+z.#
+z-#
+z,#
+z+#
+z*#
+z)#
+z(#
+z'#
+z&#
+bz %#
+z$#
+z##
+z"#
+z!#
+z~"
+z}"
+z|"
+z{"
+zz"
+zy"
+zx"
+zw"
+zv"
+bz u"
+zt"
+zs"
+zr"
+zq"
+zp"
+zo"
+zn"
+zm"
+zl"
+zk"
+zj"
+zi"
+zh"
+bz g"
+zf"
+ze"
+zd"
+zc"
+zb"
+za"
+z`"
+z_"
+z^"
+z]"
+z\"
+z["
+zZ"
+bz Y"
+zX"
+0W"
+b0 V"
+b0 U"
+b0 T"
+zS"
+zR"
+zQ"
+zP"
+xO"
+zN"
+zM"
+xL"
+xK"
+xJ"
+xI"
+xH"
+xG"
+xF"
+xE"
+xD"
+zC"
+zB"
+zA"
+z@"
+z?"
+z>"
+z="
+z<"
+z;"
+z:"
+z9"
+08"
+z7"
+z6"
+z5"
+04"
+z3"
+z2"
+z1"
+00"
+z/"
+z."
+z-"
+0,"
+z+"
+z*"
+z)"
+0("
+z'"
+z&"
+z%"
+0$"
+z#"
+z""
+z!"
+0~
+z}
+z|
+z{
+0z
+zy
+zx
+zw
+0v
+zu
+zt
+zs
+zr
+0q
+zp
+zo
+zn
+zm
+0l
+zk
+zj
+zi
+zh
+0g
+zf
+ze
+zd
+zc
+0b
+za
+z`
+z_
+0^
+z]
+z\
+0[
+zZ
+zY
+zX
+zW
+0V
+zU
+zT
+zS
+zR
+0Q
+zP
+zO
+zN
+zM
+0L
+zK
+zJ
+zI
+zH
+0G
+zF
+zE
+zD
+0C
+zB
+zA
+z@
+z?
+x>
+z=
+bx <
+bx ;
+b100 :
+19
+b100 8
+x7
+bx 6
+x5
+x4
+x3
+x2
+x1
+00
+b0 /
+b0 .
+b0 -
+x,
+z+
+0*
+0)
+z(
+z'
+z&
+z%
+x$
+z#
+z"
+z!
+$end
+#2000
+07
+#3500
+02
+#8200
+17
+#9700
+x2
+#18200
