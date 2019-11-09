@@ -12,4 +12,6 @@ This is an image of the layout:
 
 ![NVRam Programmer](docs/NVRamProg1.JPG).
 
-Ignore the *TTGO T-Display* microcontroller in the upper left, it was used for something else.
+Ignore the *TTGO T-Display* microcontroller in the upper left, it was used for something else. Also, some of the Logic analyser probes are still hooked up in the upper right.
+
+The *grey* wires are the data, the *green* are the address, the *yellow* are the signals to the FPGA and the *white/red/yellow* are the control for the NVRam.
