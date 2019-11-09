@@ -15,3 +15,5 @@ This is an image of the layout:
 Ignore the *TTGO T-Display* microcontroller in the upper left, it was used for something else. Also, some of the Logic analyser probes are still hooked up in the upper right.
 
 The *grey* wires are the data, the *green* are the address, the *yellow* are the signals to the FPGA and the *white/red/yellow* are the control for the NVRam.
+
+You only need to connect a powered USB cable to the FPGA once it is programmed. The GPIO needs to be connected to a computer so the Go program can control it.
