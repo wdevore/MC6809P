@@ -85,7 +85,7 @@ module SequenceGenerator (
             end else if (seqState == 2'b10) begin
                oCE <= 1'b1;
                seqState <= 2'b11;
-            end else if (seqState == 2'b11) begin
+            end else begin // seqState == 2'b11
                oOE <= 1'b1;
                cycleState <= 2'b11; // Transition to cycle ended
             end
@@ -108,7 +108,7 @@ module SequenceGenerator (
             end else if (seqState == 2'b10) begin
                oWE <= 1'b1;
                seqState <= 2'b11;
-            end else if (seqState == 2'b11) begin
+            end else begin // seqState == 2'b11
                oCE <= 1'b1;
                cycleState <= 2'b11; // Transition to cycle ended
             end
