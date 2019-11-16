@@ -1363,6 +1363,8 @@ Wire Wire Line
 	15250 4950 16750 4950
 Wire Wire Line
 	16750 4950 16750 7000
+Text Notes 16800 6950 0    50   ~ 0
+0x8001
 Wire Bus Line
 	13500 3400 13500 4750
 Wire Bus Line
@@ -1381,6 +1383,4 @@ Wire Bus Line
 	7200 1700 7200 4450
 Wire Bus Line
 	2000 4450 2000 6700
-Text Notes 16800 6950 0    50   ~ 0
-0x8001
 $EndSCHEMATC

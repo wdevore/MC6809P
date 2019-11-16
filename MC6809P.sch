@@ -15,19 +15,19 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Sheet
-S 1700 4000 1400 1200
+S 3250 9400 1400 1200
 U 5DA3FDB0
 F0 "UART Communication" 50
 F1 "UARTComm.sch" 50
 $EndSheet
 $Sheet
-S 1600 5850 1550 1150
+S 5050 9400 1550 1150
 U 5DAB0D48
 F0 "SPI VPIO Communication" 50
 F1 "VPIOComm.sch" 50
 $EndSheet
 $Sheet
-S 1550 7600 1750 1350
+S 1000 9300 1750 1350
 U 5DDD939E
 F0 "Parallel Communication" 50
 F1 "ParallelComm.sch" 50
@@ -39,13 +39,13 @@ F0 "Main - AXI Bidirectional Communication" 50
 F1 "BidirectionComm.sch" 50
 $EndSheet
 $Sheet
-S 3900 1700 1300 950 
+S 1550 4000 1300 950 
 U 5DAF5C26
 F0 "NVRam programmer" 50
 F1 "nvram_prog.sch" 50
 $EndSheet
 $Sheet
-S 5400 4200 1900 1450
+S 4100 1250 1900 1450
 U 5DCCE260
 F0 "Clock and Pulses" 50
 F1 "SystemClock.sch" 50
