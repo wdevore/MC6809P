@@ -317,13 +317,11 @@ Wire Wire Line
 	6300 3600 6550 3600
 Wire Wire Line
 	6300 3700 6550 3700
-Wire Wire Line
-	6300 3900 6550 3900
 Text GLabel 6550 3600 2    50   Input ~ 0
 D4
 Text GLabel 6550 3700 2    50   Input ~ 0
 D5
-Text GLabel 6550 3900 2    50   Input ~ 0
+Text GLabel 7400 3900 2    50   Input ~ 0
 D6
 Text Notes 6750 3650 0    50   ~ 0
 Read
@@ -361,9 +359,7 @@ F 3 "" H 5800 2000 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	5800 2000 5800 2300
-Wire Wire Line
-	5800 4100 5800 4200
+	5800 2000 5800 2100
 $Comp
 L Connector_Generic:Conn_01x15 J?
 U 1 1 5DADCB67
@@ -411,7 +407,7 @@ Text Notes 8900 3500 0    50   ~ 0
 D0
 Text Notes 8900 3600 0    50   ~ 0
 D3
-Text Notes 6750 3950 0    50   ~ 0
+Text Notes 7600 3950 0    50   ~ 0
 Select
 $Comp
 L Device:R R?
@@ -468,6 +464,44 @@ Wire Wire Line
 	3300 7200 3700 7200
 Text GLabel 3700 7200 2    50   Output ~ 0
 Out
+$Comp
+L Device:R R?
+U 1 1 5DDF195B
+P 7150 3600
+F 0 "R?" H 7220 3646 50  0000 L CNN
+F 1 "2.2K" H 7220 3555 50  0000 L CNN
+F 2 "" V 7080 3600 50  0001 C CNN
+F 3 "~" H 7150 3600 50  0001 C CNN
+	1    7150 3600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6300 3900 7150 3900
+Wire Wire Line
+	7150 3750 7150 3900
+Connection ~ 7150 3900
+Wire Wire Line
+	7150 3900 7400 3900
+Wire Wire Line
+	7150 3450 7150 2100
+Wire Wire Line
+	7150 2100 5800 2100
+Connection ~ 5800 2100
+Wire Wire Line
+	5800 2100 5800 2300
+$Comp
+L power:GND #PWR?
+U 1 1 5DE053A1
+P 5800 4350
+F 0 "#PWR?" H 5800 4100 50  0001 C CNN
+F 1 "GND" H 5805 4177 50  0000 C CNN
+F 2 "" H 5800 4350 50  0001 C CNN
+F 3 "" H 5800 4350 50  0001 C CNN
+	1    5800 4350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5800 4100 5800 4350
 Wire Bus Line
 	3800 1950 3800 4850
 Wire Bus Line
