@@ -1,4 +1,4 @@
-# SRC
+# Programmmer
 The source code here is supports the MC6809 SBC project.
 
 ## RamTron NVRam programmer
@@ -14,7 +14,7 @@ An early experimental version of the programmer is located under the two followi
 It was simply meant to test if I could program the NV Ram. The Non-Volital Ram is an old technology originally designed by RamTron which has since be bought by Cypress Semi.
 
 Breadboard layout:
-![NVRam Programmer](../docs/NVRamProg1.JPG)
+![NVRam Programmer](NVRamProg1.JPG)
 
 Ignore the *TTGO T-Display* microcontroller in the upper left, it was used for something else. Also, some of the Logic analyser probes are still hooked up in the upper right.
 
@@ -24,7 +24,7 @@ You only need to connect a powered USB cable to the FPGA once it is programmed. 
 
 Logic Diagram:
 
-![Logic NVRam Programmer](../docs/USB-GPIO-Programmer.jpg)
+![Logic NVRam Programmer](USB-GPIO-Programmer.jpg)
 
 ### Arduino based programmer
 This programmer variant is faster, however, the current arduino code doesn't generate control signals within the 2us memory cycle window--the signals are around 4.1us. Nonetheless it does work with the caveat that endurance drops. The eventual goal would be to either figure out how to manipulate the Arduino' control registers for more precise timing or introduce an FPGA as done in the other programmer.
@@ -35,13 +35,13 @@ The source is located under the two folders:
 
 This is an image of the layout:
 
-![Arduino NVRam Programmer](../docs/arduinoNVProgrammer.JPG).
+![Arduino NVRam Programmer](arduinoNVProgrammer.JPG).
 
 The Ziff socket *up-top* is the final version that will plug *on top* of the Mega.
 
 Logic Diagram:
 
-![Logic NVRam Programmer](../docs/MC6809-Arduino-Programmer.jpg)
+![Logic NVRam Programmer](MC6809-Arduino-Programmer.jpg)
 
 #### Pin connections
 UART:
