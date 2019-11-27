@@ -15,7 +15,7 @@ It was simply meant to test if I could program the NV Ram. The Non-Volital Ram i
 
 This is an image of the layout:
 
-![NVRam Programmer](docs/NVRamProg1.JPG).
+![NVRam Programmer](../docs/NVRamProg1.JPG).
 
 Ignore the *TTGO T-Display* microcontroller in the upper left, it was used for something else. Also, some of the Logic analyser probes are still hooked up in the upper right.
 
