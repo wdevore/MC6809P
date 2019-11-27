@@ -1007,19 +1007,6 @@ Wire Wire Line
 Connection ~ 3000 8500
 Wire Wire Line
 	3000 8500 3000 9400
-$Comp
-L Timer:NE555 U?
-U 1 1 5F306AF6
-P 3250 11900
-AR Path="/5DAB0D48/5F306AF6" Ref="U?"  Part="1" 
-AR Path="/5F293828/5F306AF6" Ref="U?"  Part="1" 
-F 0 "U?" H 3250 12481 50  0000 C CNN
-F 1 "NE555" H 3250 12390 50  0000 C CNN
-F 2 "" H 3250 11900 50  0001 C CNN
-F 3 "http://www.ti.com/lit/ds/symlink/ne555.pdf" H 3250 11900 50  0001 C CNN
-	1    3250 11900
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	11200 1100 11350 1100
 Entry Wire Line
