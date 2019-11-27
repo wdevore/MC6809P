@@ -22,3 +22,16 @@ Ignore the *TTGO T-Display* microcontroller in the upper left, it was used for s
 The *grey* wires are the data, the *green* are the address, the *yellow* are the signals to the FPGA and the *white/red/yellow* are the control for the NVRam.
 
 You only need to connect a powered USB cable to the FPGA once it is programmed. The GPIO needs to be connected to a computer so the Go program can control it.
+
+### Arduino based programmer
+This programmer variant is faster, however, the current arduino code doesn't generate control signals within the 2us memory cycle window--more 4.1us. Nonetheless it does work with the caveat that endurance drops. The eventual goal would be to either figure out how to manipulate the Arduino' control registers for more precise timing or introduce an FPGA as done in the other programmer.
+
+The source is located under the two folders:
+* MegaGoNVProgrammer (Go client)
+* MegaNVRamProgrammer (Arduino proxy)
+
+This is an image of the layout:
+
+![Arduino NVRam Programmer](../docs/arduinoNVProgrammer.JPG).
+
+The Ziff socket is the final version that will plug *on top* of the Mega.
