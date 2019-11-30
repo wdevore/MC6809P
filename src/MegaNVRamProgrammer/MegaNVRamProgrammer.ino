@@ -5,7 +5,7 @@
 
 const byte VERSION_MAJOR = 1;
 const byte VERSION_MINOR = 0;
-const byte VERSION_PATCH = 21;
+const byte VERSION_PATCH = 22;
 
 // Address Mega pins
 uint8_t nvA1 = 53;
@@ -168,10 +168,13 @@ const int MODE_IDLE = 0;
 const int MODE_WRITE = 1;
 const int MODE_VERIFY = 2;
 const int MODE_READ = 3;
+const int MODE_ERASE = 4;
 
 // Make sure we use the same consts from the Go app.
 const int DATA = 0;
 const int EOD = 1;
+
+const int MEMORY_SIZE = 32768;
 
 // 0 = idle, 1 = write, 2 = verify, 3 = read
 int cmdMode = MODE_IDLE;
@@ -330,6 +333,30 @@ int processReadCommand() {
   return mode;
 }
 
+// ---------------------------------------------------------------------------------------
+// Erase
+// ---------------------------------------------------------------------------------------
+int processEraseCommand() {
+  org_address = 0;
+  
+  for (int i = 0; i < MEMORY_SIZE; i++) {
+    if (i % 1024 == 0) {
+      // Tell Go that 1K was successfully erased
+      byte stat[]={1};
+      Serial1.write(stat, 1);
+    }
+
+    writeData(org_address, 0);
+    org_address++;
+  }
+
+  // Tell Go that the memory was erased successfully.
+  byte stat[]={2};
+  Serial1.write(stat, 1);
+
+  return MODE_IDLE;
+}
+
 void loop() {
   // Wait for data from the Go app
   if (cmdMode == MODE_IDLE) {
@@ -366,6 +393,7 @@ void loop() {
         cmdMode = MODE_VERIFY;
         Serial1.print("ack");
       } else if (rx_string == "version") {
+        Serial.println("Sending version");
         byte buf[] = {VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH};
         Serial1.write(buf, 3);
       } else if (rx_string == "read") {
@@ -381,6 +409,20 @@ void loop() {
         
         cmdMode = MODE_READ;
         Serial1.print("ack");
+      } else if (rx_string == "erase") {
+        Serial.println("Switching to MODE_ERASE");
+        
+        pinMode(nvD0, OUTPUT);
+        pinMode(nvD1, OUTPUT);
+        pinMode(nvD2, OUTPUT);
+        pinMode(nvD3, OUTPUT);
+        pinMode(nvD4, OUTPUT);
+        pinMode(nvD5, OUTPUT);
+        pinMode(nvD6, OUTPUT);
+        pinMode(nvD7, OUTPUT);
+
+        cmdMode = MODE_ERASE;
+        Serial1.print("ack");
       }
     }    
   } else if (cmdMode == MODE_WRITE) {
@@ -389,5 +431,7 @@ void loop() {
     cmdMode = processVerifyCommand();
   } else if (cmdMode == MODE_READ) {
     cmdMode = processReadCommand();
+  } else if (cmdMode == MODE_ERASE) {
+    cmdMode = processEraseCommand();
   }
 }

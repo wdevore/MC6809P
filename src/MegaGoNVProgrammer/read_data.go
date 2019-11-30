@@ -32,13 +32,11 @@ func readData(config map[string]interface{}, port io.ReadWriteCloser) {
 
 	// Wait for "ack" from Mega
 	ack := []byte{0, 0, 0}
-	n, errR := port.Read(ack)
+	_, errR := port.Read(ack)
 	if errR != nil {
 		log.Fatal(errR)
 	}
 	ack_rep := string(ack)
-	fmt.Println("ack: [", ack_rep, "]")
-	fmt.Println("n: ", n)
 	if ack_rep == "ack" {
 		fmt.Println("Mega ready for reading")
 		// Mega is ready for reading

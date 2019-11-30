@@ -21,6 +21,7 @@ func programmer(config map[string]interface{}, port io.ReadWriteCloser) {
 		fmt.Println("'w' to write data to Ram")
 		fmt.Println("'r' to read data from ram to file")
 		fmt.Println("'f' to verify data from file against ram")
+		fmt.Println("'e' to erase data from ram with zeroes")
 		fmt.Println("'v' to list Mega2560 sketch version")
 		fmt.Println("-------------------------------")
 		fmt.Print(">")
@@ -51,6 +52,14 @@ func programmer(config map[string]interface{}, port io.ReadWriteCloser) {
 			readData(config, port)
 
 			fmt.Println("____ Reading complete ____")
+
+			continue
+		}
+
+		if cmd == "e\n" {
+			eraseData(config, port)
+
+			fmt.Println("____ Erasing complete ____")
 
 			continue
 		}
