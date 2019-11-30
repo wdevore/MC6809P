@@ -34,11 +34,17 @@ The source is located under the two folders:
 * MegaGoNVProgrammer (Go client)
 * MegaNVRamProgrammer (Arduino proxy)
 
-This is an image of the layout:
-
-![Arduino NVRam Programmer](arduinoNVProgrammer.JPG).
+This is the test breadboard layout:
+![Arduino NVRam Programmer](arduinoNVProgrammer.JPG)
 
 The Ziff socket *up-top* is the final version that will plug *on top* of the Mega.
+
+This is the final Mega version on a Perf board using wire-wrap:
+![Arduino WireWrap1 Programmer](WireWrapNVRamProgrammer1.JPG)
+The resistor is a 2.2K bias to 5V on the CE pin as strongly suggested by the spec sheet.
+
+Bottom side:
+![Arduino WireWrap2 Programmer](WireWrapNVRamProgrammer2.JPG)
 
 Logic Diagram:
 
