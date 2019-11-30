@@ -8,21 +8,21 @@ const byte VERSION_MINOR = 0;
 const byte VERSION_PATCH = 21;
 
 // Address Mega pins
-uint8_t nvA0 = 53;
-uint8_t nvA1 = 51;
-uint8_t nvA2 = 49;
-uint8_t nvA3 = 47;
-uint8_t nvA4 = 45;
-uint8_t nvA5 = 43;
-uint8_t nvA6 = 41;
-uint8_t nvA7 = 39;
-uint8_t nvA8 = 37;
-uint8_t nvA9 = 35;
-uint8_t nvA10 = 33;
-uint8_t nvA11 = 31;
-uint8_t nvA12 = 29;
-uint8_t nvA13 = 27;
-uint8_t nvA14 = 25;
+uint8_t nvA1 = 53;
+uint8_t nvA2 = 51;
+uint8_t nvA3 = 49;
+uint8_t nvA4 = 47;
+uint8_t nvA5 = 45;
+uint8_t nvA6 = 43;
+uint8_t nvA7 = 41;
+uint8_t nvA8 = 39;
+uint8_t nvA9 = 37;
+uint8_t nvA10 = 35;
+uint8_t nvA11 = 33;
+uint8_t nvA12 = 31;
+uint8_t nvA13 = 29;
+uint8_t nvA14 = 27;
+uint8_t nvA0 = 25;
 
 // Data Mega pins
 uint8_t nvD0 = 52;
@@ -35,9 +35,9 @@ uint8_t nvD6 = 40;
 uint8_t nvD7 = 38;
 
 // Control Mega pins
-uint8_t nvWE = 22;
-uint8_t nvOE = 24;
 uint8_t nvCE = 26;
+uint8_t nvOE = 24;
+uint8_t nvWE = 22;
 
 String rx_string;
 

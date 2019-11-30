@@ -14,6 +14,7 @@ An early experimental version of the programmer is located under the two followi
 It was simply meant to test if I could program the NV Ram. The Non-Volital Ram is an old technology originally designed by RamTron which has since be bought by Cypress Semi.
 
 Breadboard layout:
+
 ![NVRam Programmer](NVRamProg1.JPG)
 
 Ignore the *TTGO T-Display* microcontroller in the upper left, it was used for something else. Also, some of the Logic analyser probes are still hooked up in the upper right.
@@ -56,21 +57,26 @@ Pin 20 needs to be biased to VDD with a 2.2K resistor.
 ```
 Mega to NVRam:
 ```
-A0  : Pin 53 -> Pin 10
-A1  : Pin 51 -> Pin 9
-A2  : Pin 49 -> Pin 8
-A3  : Pin 47 -> Pin 7
-A4  : Pin 45 -> Pin 6
-A5  : Pin 43 -> Pin 5
-A6  : Pin 41 -> Pin 4
-A7  : Pin 39 -> Pin 3
-A8  : Pin 37 -> Pin 25
-A9  : Pin 35 -> Pin 24
-A10 : Pin 33 -> Pin 21
-A11 : Pin 31 -> Pin 23
-A12 : Pin 29 -> Pin 2
-A13 : Pin 27 -> Pin 26
-A14 : Pin 25 -> Pin 1
+--  : Pin 55 -> Grnd
+A1  : Pin 53 -> Pin 9
+A2  : Pin 51 -> Pin 8
+A3  : Pin 49 -> Pin 7
+A4  : Pin 47 -> Pin 6
+A5  : Pin 45 -> Pin 5
+A6  : Pin 43 -> Pin 4
+A7  : Pin 41 -> Pin 3
+A8  : Pin 39 -> Pin 25            outside edge
+A9  : Pin 37 -> Pin 24
+A10 : Pin 35 -> Pin 21
+A11 : Pin 33 -> Pin 23
+A12 : Pin 31 -> Pin 2
+A13 : Pin 29 -> Pin 26
+A14 : Pin 27 -> Pin 1
+A0  : Pin 25 -> Pin 10
+    : Pin 23 -> NC
+--  : Pin 21 -> 5V
+--------------------------------------
+--  : Pin 54 -> Grnd
 D0  : Pin 52 -> Pin 11
 D1  : Pin 50 -> Pin 12
 D2  : Pin 48 -> Pin 13
@@ -79,9 +85,15 @@ D4  : Pin 44 -> Pin 16
 D5  : Pin 42 -> Pin 17
 D6  : Pin 40 -> Pin 18
 D7  : Pin 38 -> Pin 19
-WE  : Pin 22 -> Pin 27
-OE  : Pin 24 -> Pin 22
+    : Pin 36 -> NC                inside edge
+    : Pin 34 -> NC
+    : Pin 32 -> NC
+    : Pin 30 -> NC
+    : Pin 28 -> NC
 CE  : Pin 26 -> Pin 20
+OE  : Pin 24 -> Pin 22
+WE  : Pin 22 -> Pin 27
+--  : Pin 20 -> 5V
 ```
 
 #### Usage:
