@@ -77,8 +77,15 @@ func programmer(config map[string]interface{}, port io.ReadWriteCloser) {
 			if errR != nil {
 				log.Fatal(errR)
 			}
-			fmt.Printf("Mega version: [%d.%d.%d]\n", ack[0], ack[1], ack[2])
+			fmt.Printf("Programmer version: [%d.%d.%d]\n", ack[0], ack[1], ack[2])
 
+			// The Mega will send back 8 characters
+			prog := []byte{0, 0, 0, 0, 0, 0, 0, 0}
+			_, errR = port.Read(prog)
+			if errR != nil {
+				log.Fatal(errR)
+			}
+			fmt.Printf("Programmer type: [%s]\n", prog)
 			continue
 		}
 

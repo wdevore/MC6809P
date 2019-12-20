@@ -1,6 +1,6 @@
 {
     "RAM": "ram.data",
     "StartAddress": 0,
-    "Size": 32767,
-    "ROM": "rom.data"
+    "Size": 2048,
+    "ROM": "rom28C16.data"
 }

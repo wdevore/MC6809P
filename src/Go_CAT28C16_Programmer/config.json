@@ -1,0 +1,7 @@
+{
+    "ReadOutput": "rom28C16.data",
+    "StartAddress": 0,
+    "Size": 2048,
+    "PageSize": 64,
+    "InputROM": "rom.data"
+}

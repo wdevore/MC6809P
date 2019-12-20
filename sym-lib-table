@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name Power_Supervisor)(type Legacy)(uri ${KIPRJMOD}/Power_Supervisor.lib)(options "")(descr ""))
+  (lib (name Memory_RAM_HM62256A)(type Legacy)(uri ${KIPRJMOD}/Memory_RAM_HM62256A.lib)(options "")(descr ""))
+)

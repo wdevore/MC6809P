@@ -1,0 +1,17 @@
+// Address range is 0x0000 -> 0x7FFF
+// Programmer starts writing at 0x0000 on the progammer
+Block 0000
+68656c6c6f
+20
+776f726c64
+End
+
+// Reset vector is at 0xFFFE or 0x7FFE during programming.
+Block 00F0
+// ROM starts at hardware address: 0xA000
+A001
+B002
+FE
+End
+
+Stop

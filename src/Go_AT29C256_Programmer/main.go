@@ -1,8 +1,9 @@
 package main
 
 /*
-Reference:
-https://learn.adafruit.com/adafruit-ft232h-breakout/more-info
+This programmer uses two UART channels:
+ 1) One USB-to-UART channel to send/receive data to a Mega2560.
+ 2) A second channel to control the programmer via a console gui.
 
 Because all the files are in the same directory you need to run "main.go" as
 follows:
@@ -52,12 +53,14 @@ func main() {
 	}
 
 	// Open the port.
-	portName := "/dev/ttyUSB1"
+	portName := "/dev/ttyUSB0"
 
 	port, err := serial.Open(options)
 	if err != nil {
-		fmt.Println("Couldn't open ttyUSB1 trying USB2")
-		portName = "/dev/ttyUSB2"
+		fmt.Print("Couldn't open ", portName)
+
+		portName = "/dev/ttyUSB1"
+		fmt.Println(" trying ", portName)
 		options.PortName = portName
 
 		// Open the port.
