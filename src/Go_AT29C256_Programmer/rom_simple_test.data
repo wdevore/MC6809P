@@ -1,0 +1,19 @@
+// The ROM occupies the bottom 24K
+// Address range is 0xA000 -> FFFF
+// However, the programmer only knows of the range:
+// 0x0000 -> 0x7FFF
+// So ROM addresses need to be mapped into programmer space.
+// For example, ROM starts at 0xA000 which is mapped to
+// 0x2000 in progammer space.
+
+// Programmer starts writing at 0x2000 on the progammer
+Block 2000
+010203  // LDA 01
+End
+
+// Set reset-vector. ROM space address is: 0xFFFE
+Block 7FFE
+A000 // Redirect to 0xA000
+End
+
+Stop

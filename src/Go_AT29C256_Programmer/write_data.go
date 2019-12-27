@@ -13,27 +13,27 @@ import (
 )
 
 type RomPage struct {
-	index int
+	index int64
 	data  []byte // length of page-size
 }
 
-func NewPage(index int, pageSize int) *RomPage {
+func NewPage(index int64, pageSize int64) *RomPage {
 	o := new(RomPage)
 	o.data = make([]byte, pageSize)
 	o.index = index
 	return o
 }
 
-func (rp *RomPage) storeByAddress(address int, pageSize int, data byte) {
-	pgAddr := address % pageSize
-	rp.storeByIndex(pgAddr, data)
+func (rp *RomPage) storeByAddress(address int64, pageSize int64, data byte) {
+	index := address % pageSize
+	rp.storeByIndex(index, data)
 }
 
-func (rp *RomPage) storeByIndex(index int, data byte) {
+func (rp *RomPage) storeByIndex(index int64, data byte) {
 	rp.data[index] = data
 }
 
-func (rp *RomPage) address(pageSize int) int {
+func (rp *RomPage) address(pageSize int64) int64 {
 	return rp.index * pageSize
 }
 
@@ -58,10 +58,16 @@ func (rp *RomPage) dump() {
 // you must write the Page that contains that byte.
 // PageSize is typically 64 bytes in size but varies by device.
 // Pages would be:
-// 0   -> 63   = 0
-// 64  -> 127  = 1
-// 128 -> 191  = 2
+//                           Page     64K       32K
+//      0      ->   63     = 0
+//      64     ->   127    = 1
+//      128    ->   191    = 2
+// 2000 8192   ->   8256   = 128
+// 7FF0 32752  ->   32816
 // ...
+// A000 40960  ->   41024  = 640      40960     8192 (0x2000)
+// ...
+// FFFF        ->   65536    1024
 
 // Create an a List of pages that have been loaded from the
 // data file.
@@ -70,6 +76,7 @@ func (rp *RomPage) dump() {
 
 const DATA = 0
 const EOD = 1
+const SUCCESS = 1
 
 func writeData(config map[string]interface{}, port io.ReadWriteCloser) {
 	romFile := config["InputROM"].(string)
@@ -81,7 +88,7 @@ func writeData(config map[string]interface{}, port io.ReadWriteCloser) {
 
 	defer dataFile.Close()
 
-	pageSize := int(config["PageSize"].(float64))
+	pageSize := int64(config["PageSize"].(float64))
 	pages := make(map[int]*RomPage)
 
 	scanner := bufio.NewScanner(dataFile)
@@ -92,16 +99,17 @@ func writeData(config map[string]interface{}, port io.ReadWriteCloser) {
 	for scanner.Scan() {
 		line := scanner.Text()
 
-		if !strings.Contains(line, "//") && line != "" {
-			if line == "Stop" {
+		index := strings.Index(line, "//")
+		if index == 0 {
+			continue
+		} else if line == "" {
+			continue
+		} else if line == "Stop" {
+			break
+		} else if strings.Contains(line, "Block") {
+			stopped := processBlock(port, scanner, pages, pageSize)
+			if stopped {
 				break
-			}
-
-			if strings.Contains(line, "Block") {
-				stopped := processBlock(port, scanner, pages, pageSize)
-				if stopped {
-					break
-				}
 			}
 		}
 	}
@@ -113,15 +121,32 @@ func writeData(config map[string]interface{}, port io.ReadWriteCloser) {
 	// fmt.Println("Dumps")
 
 	// Finally write pages to Mega controller.
-	for k, v := range pages {
-		fmt.Println("Writing Page: ", k)
-		// v.dump()
-		writePage(port, v, pageSize)
+	for _, v := range pages {
+		fmt.Printf("Writing page: (%d) %d <%04x>\n", v.index, v.index*pageSize, v.index*pageSize)
+		v.dump()
+
+		success := writePage(port, v, pageSize)
+		if !success {
+			fmt.Println("FAILED writing")
+			break
+		}
+
+		fmt.Println("SUCCESS writing")
 	}
 
+	// for page := 0; page < 65536/2; page += 64 {
+	// 	fmt.Printf("(%05d) %04X %04X %04X %04X\n", page, page, page+16, page+32, page+48)
+	// }
+
+	// page := 0x2000
+	// fmt.Printf("(%05d) %04X %04X %04X %04X\n", page, page, page+16, page+32, page+48)
+
+	// for page := 0; page < 65536; page += 64 {
+	// 	fmt.Printf("(%d) 64K: %04X 32K: ")
+	// }
 }
 
-func processBlock(port io.ReadWriteCloser, scanner *bufio.Scanner, pages map[int]*RomPage, pageSize int) (stopped bool) {
+func processBlock(port io.ReadWriteCloser, scanner *bufio.Scanner, pages map[int]*RomPage, pageSize int64) (stopped bool) {
 	stopped = false
 
 	block := scanner.Text()
@@ -138,56 +163,58 @@ func processBlock(port io.ReadWriteCloser, scanner *bufio.Scanner, pages map[int
 	for scanner.Scan() {
 		line := scanner.Text()
 
-		if !strings.Contains(line, "//") && line != "" {
-			if line == "Stop" {
-				stopped = true
-				break
-			}
+		if strings.Contains(line, "//") {
+			// Strip trailing comment.
+			line = line[0:strings.LastIndex(line, "//")]
+			line = strings.TrimRight(line, " ")
+		}
 
-			if line == "End" {
-				break
-			}
+		if line == "Stop" {
+			stopped = true
+			break
+		}
 
-			bytes, err2 := hex.DecodeString(line)
-			if err2 != nil {
-				log.Fatal(err2)
-			}
+		if line == "End" {
+			break
+		}
 
-			for _, byto := range bytes {
-				// Calc the page index
-				page, _ := getPage(port, int(blockAddress), pageSize, pages)
+		bytes, err2 := hex.DecodeString(line)
+		if err2 != nil {
+			log.Fatal(err2)
+		}
 
-				page.storeByAddress(int(blockAddress), pageSize, byto)
+		for _, byto := range bytes {
+			// Calc the page index
+			page, _ := getPage(port, blockAddress, pageSize, pages)
+			page.storeByAddress(blockAddress, pageSize, byto)
 
-				blockAddress++
-			}
+			blockAddress++
 		}
 	}
 
 	return (stopped)
 }
 
-func getPage(port io.ReadWriteCloser, address int, pageSize int, pages map[int]*RomPage) (page *RomPage, index int) {
+func getPage(port io.ReadWriteCloser, address int64, pageSize int64, pages map[int]*RomPage) (page *RomPage, index int64) {
 	// Calc the page index
-	index = int(address / pageSize)
-	page = pages[index]
+	index = int64(address / pageSize)
+	page = pages[int(index)]
 
 	if page == nil {
-		fmt.Println("Dirty page at: ", index)
 		page = NewPage(index, pageSize)
 
 		// Read ROM Chip to get current page contents.
 		readPage(port, page, pageSize)
 
-		page.dump()
+		// page.dump()
 
-		pages[index] = page
+		pages[int(index)] = page
 	}
 
 	return page, index
 }
 
-func readPage(port io.ReadWriteCloser, page *RomPage, pageSize int) {
+func readPage(port io.ReadWriteCloser, page *RomPage, pageSize int64) {
 	// Begin read protocol with Mega
 	data := []byte("read_page")
 	_, err := port.Write(data)
@@ -202,33 +229,38 @@ func readPage(port io.ReadWriteCloser, page *RomPage, pageSize int) {
 		log.Fatal(errR)
 	}
 	ack_rep := string(ack)
+	fmt.Println("Reading page: ", page.index)
 
 	if ack_rep == "ack" {
 		da := make([]byte, 2)
 
 		// Send address first. This address should be on page boundaries
 		address := page.address(pageSize)
+		fmt.Printf("Address: %d <%0x>\n", address, address)
 		binary.LittleEndian.PutUint16(da, uint16(address))
 		port.Write(da)
 
 		// Send page size next
+		da[0] = 0
+		da[1] = 0
 		binary.LittleEndian.PutUint16(da, uint16(pageSize))
 		port.Write(da)
 
-		// Now fetch page
 		rd := []byte{0}
 
-		for i := 0; i < pageSize; i++ {
+		for i := int64(0); i < pageSize; i++ {
+			// Now fetch byte
 			port.Read(rd)
-
 			page.storeByIndex(i, rd[0])
 		}
+		fmt.Println("Page pre-read")
+		page.dump()
 	}
 }
 
-func writePage(port io.ReadWriteCloser, page *RomPage, pageSize int) {
+func writePage(port io.ReadWriteCloser, page *RomPage, pageSize int64) bool {
 	// Begin write protocol with Mega
-	data := []byte("write_page")
+	data := []byte("write")
 	_, err := port.Write(data)
 	if err != nil {
 		log.Fatal(err)
@@ -253,14 +285,21 @@ func writePage(port io.ReadWriteCloser, page *RomPage, pageSize int) {
 		binary.LittleEndian.PutUint16(da, uint16(pageSize))
 		port.Write(da)
 
-		wd := []byte{0}
-
-		// Now send data
-		for i := 0; i < pageSize; i++ {
-			wd[0] = page.data[i]
-			port.Write(wd)
+		// Now send data.
+		da = []byte{0}
+		for i := int64(0); i < pageSize; i++ {
+			da[0] = page.data[i]
+			// fmt.Printf("(%02d) %0x,", i, da[0])
+			port.Write(da)
 		}
+
+		// Finally wait for success response.
+		resp := []byte{0}
+		port.Read(resp)
+		return resp[0] == 1
 	}
+
+	return false
 }
 
 // func contains(l *list.List, item int64) bool {

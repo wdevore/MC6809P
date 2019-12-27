@@ -18,11 +18,12 @@ func programmer(config map[string]interface{}, port io.ReadWriteCloser) {
 		fmt.Println("### ROM programmer ###")
 		fmt.Println("Enter one of the following:")
 		fmt.Println("'q' to quit/exit")
-		fmt.Println("'w' to write data to Ram")
-		fmt.Println("'r' to read data from ram to file")
-		fmt.Println("'f' to verify data from file against ram")
-		fmt.Println("'e' to erase data from ram with zeroes")
-		fmt.Println("'v' to list Mega2560 sketch version")
+		fmt.Println("'w' to write data to ROM")
+		fmt.Println("'r' to read data from ROM to file")
+		// fmt.Println("'f' to verify data from file against ROM")
+		fmt.Println("'e' to erase data from ROM")
+		fmt.Println("'d' to disable Software Data Protect Mode")
+		fmt.Println("'v' to list Mega2560 sketch version and type")
 		fmt.Println("-------------------------------")
 		fmt.Print(">")
 
@@ -37,7 +38,7 @@ func programmer(config map[string]interface{}, port io.ReadWriteCloser) {
 			writeData(config, port)
 
 			fmt.Println("____ Writing complete ____")
-
+			quit = true
 			continue
 		}
 		if cmd == "f\n" {
@@ -45,6 +46,7 @@ func programmer(config map[string]interface{}, port io.ReadWriteCloser) {
 
 			fmt.Println("____ Verification complete ____")
 
+			quit = true
 			continue
 		}
 
@@ -53,6 +55,7 @@ func programmer(config map[string]interface{}, port io.ReadWriteCloser) {
 
 			fmt.Println("____ Reading complete ____")
 
+			quit = true
 			continue
 		}
 
@@ -61,6 +64,20 @@ func programmer(config map[string]interface{}, port io.ReadWriteCloser) {
 
 			fmt.Println("____ Erasing complete ____")
 
+			quit = true
+			continue
+		}
+
+		if cmd == "d\n" {
+			data := []byte("sdpd")
+			_, err := port.Write(data)
+			if err != nil {
+				log.Fatal(err)
+			}
+
+			fmt.Println("____ SDPD complete ____")
+
+			quit = true
 			continue
 		}
 
@@ -79,6 +96,19 @@ func programmer(config map[string]interface{}, port io.ReadWriteCloser) {
 			}
 			fmt.Printf("Mega version: [%d.%d.%d]\n", ack[0], ack[1], ack[2])
 
+			// The Mega will send back upto 256 characters
+			prog := []byte{0}
+			port.Read(prog)
+
+			fmt.Print("Programmer type: [")
+			pln := int(prog[0])
+			for i := 0; i < pln; i++ {
+				port.Read(prog)
+				fmt.Printf("%c", prog[0])
+			}
+			fmt.Println("]")
+
+			quit = true
 			continue
 		}
 

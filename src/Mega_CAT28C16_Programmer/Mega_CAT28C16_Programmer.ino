@@ -163,7 +163,7 @@ bool writeData(int address, byte data) {
     }
 
     if (cycle > 11) {
-      Serial.println("Cycle Failed.");
+      Serial.println("Write Failed.");
       return false; // indicate failure to write
     }
     cycle++;
