@@ -1,5 +1,6 @@
 EESchema Schematic File Version 4
-EELAYER 30 0
+LIBS:MC6809P-cache
+EELAYER 29 0
 EELAYER END
 $Descr A1 33110 23386
 encoding utf-8
@@ -1482,11 +1483,6 @@ Entry Wire Line
 	2850 6650 2750 6550
 Entry Wire Line
 	2200 6550 2300 6650
-Wire Bus Line
-	4850 5550 4850 6650
-Connection ~ 4850 6650
-Wire Bus Line
-	4850 6650 4850 9250
 Wire Wire Line
 	3200 5650 3200 5750
 Wire Wire Line
@@ -2126,8 +2122,17 @@ Wire Wire Line
 	18550 12900 19050 12900
 Wire Bus Line
 	13850 12850 13850 13700
+Connection ~ 13850 13700
 Wire Bus Line
-	2300 6650 4850 6650
+	13850 13700 12350 13700
+Wire Wire Line
+	3350 13650 4450 13650
+Wire Bus Line
+	4850 9250 3450 9250
+Wire Bus Line
+	3450 9250 3450 6650
+Wire Bus Line
+	2300 6650 3450 6650
 Wire Bus Line
 	19950 12400 19950 13700
 Wire Bus Line
@@ -2150,9 +2155,4 @@ Wire Bus Line
 	12350 9250 12350 13700
 Wire Bus Line
 	4850 9250 4850 12650
-Connection ~ 13850 13700
-Wire Bus Line
-	13850 13700 12350 13700
-Wire Wire Line
-	3350 13650 4450 13650
 $EndSCHEMATC

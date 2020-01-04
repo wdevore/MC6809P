@@ -3,5 +3,5 @@
     "StartAddress": 0,
     "Size": 32768,
     "PageSize": 64,
-    "InputROM": "rom_simple_test.data"
+    "InputROM": "rom.data"
 }

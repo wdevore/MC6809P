@@ -7,7 +7,7 @@
 
 const byte VERSION_MAJOR = 1;
 const byte VERSION_MINOR = 0;
-const byte VERSION_PATCH = 13;
+const byte VERSION_PATCH = 15;
 const char PROGRAMMER[] = "AT29C256-15PC";
 
 // Address     Mega pins // Rom pins
@@ -84,7 +84,7 @@ void setup() {
   Serial.begin(115200);
 
   // Serial1 interacts with a Go program at high speed
-  Serial1.begin(1000000);
+  Serial1.begin(250000);
   Serial1.setTimeout(10); 
     
   Serial.print("Initializing Programmer ");
@@ -367,7 +367,7 @@ int processWriteCommand() {
     // Send byte back to GO app.
     Serial1.write(resp, 1);    
   } else {
-    //Serial.println("Byte write FAILED");
+    Serial.println("Byte write FAILED");
     byte resp[]={FAIL};
     // Send byte back to GO app.
     Serial1.write(resp, 1);     

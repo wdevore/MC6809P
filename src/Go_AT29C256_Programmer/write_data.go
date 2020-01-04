@@ -94,7 +94,7 @@ func writeData(config map[string]interface{}, port io.ReadWriteCloser) {
 	scanner := bufio.NewScanner(dataFile)
 
 	// Read rom file data
-	fmt.Println("Reading data...")
+	// fmt.Println("Reading data...")
 
 	for scanner.Scan() {
 		line := scanner.Text()
@@ -236,7 +236,7 @@ func readPage(port io.ReadWriteCloser, page *RomPage, pageSize int64) {
 
 		// Send address first. This address should be on page boundaries
 		address := page.address(pageSize)
-		fmt.Printf("Address: %d <%0x>\n", address, address)
+		fmt.Printf("At address: %d <%0x>\n", address, address)
 		binary.LittleEndian.PutUint16(da, uint16(address))
 		port.Write(da)
 
