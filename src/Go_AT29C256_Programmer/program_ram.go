@@ -6,6 +6,8 @@ import (
 	"io"
 	"log"
 	"os"
+	"strconv"
+	"strings"
 )
 
 func programmer(config map[string]interface{}, port io.ReadWriteCloser) {
@@ -20,6 +22,8 @@ func programmer(config map[string]interface{}, port io.ReadWriteCloser) {
 		fmt.Println("'q' to quit/exit")
 		fmt.Println("'w' to write data to ROM")
 		fmt.Println("'r' to read data from ROM to file")
+		fmt.Println("'i' to read a page (at index) and display")
+		fmt.Println("'a' to read a page (at Hex address) and display")
 		// fmt.Println("'f' to verify data from file against ROM")
 		fmt.Println("'e' to erase data from ROM")
 		fmt.Println("'d' to disable Software Data Protect Mode")
@@ -52,6 +56,40 @@ func programmer(config map[string]interface{}, port io.ReadWriteCloser) {
 
 		if cmd == "r\n" {
 			readData(config, port)
+
+			fmt.Println("____ Reading complete ____")
+
+			quit = true
+			continue
+		}
+
+		if cmd == "i\n" {
+			fmt.Print("Enter index: ")
+			idx, _ := reader.ReadString('\n')
+			idx = strings.TrimSuffix(idx, "\n")
+			index, err := strconv.Atoi(idx)
+			if err != nil {
+				log.Fatal(err)
+			}
+
+			readPageByIndex(config, port, int64(index))
+
+			fmt.Println("____ Reading complete ____")
+
+			quit = true
+			continue
+		}
+
+		if cmd == "a\n" {
+			fmt.Print("Enter hex address: ")
+			a, _ := reader.ReadString('\n')
+			a = strings.TrimSuffix(a, "\n")
+			address, err := strconv.ParseInt(a, 16, 16)
+			if err != nil {
+				log.Fatal(err)
+			}
+
+			readPageByAddress(config, port, address)
 
 			fmt.Println("____ Reading complete ____")
 

@@ -12,68 +12,6 @@ import (
 	"strings"
 )
 
-type RomPage struct {
-	index int64
-	data  []byte // length of page-size
-}
-
-func NewPage(index int64, pageSize int64) *RomPage {
-	o := new(RomPage)
-	o.data = make([]byte, pageSize)
-	o.index = index
-	return o
-}
-
-func (rp *RomPage) storeByAddress(address int64, pageSize int64, data byte) {
-	index := address % pageSize
-	rp.storeByIndex(index, data)
-}
-
-func (rp *RomPage) storeByIndex(index int64, data byte) {
-	rp.data[index] = data
-}
-
-func (rp *RomPage) address(pageSize int64) int64 {
-	return rp.index * pageSize
-}
-
-func (rp *RomPage) dump() {
-	maxCol := 16
-	col := 0
-
-	for i := 0; i < len(rp.data); i++ {
-		sv := fmt.Sprintf("%02X ", rp.data[i])
-		if col == maxCol-1 {
-			fmt.Println(sv)
-			col = 0
-		} else {
-			fmt.Print(sv)
-			col++
-		}
-	}
-	fmt.Println("")
-}
-
-// The EEPROMs uses "Page"s for writing data. Hence, in order to write a single byte
-// you must write the Page that contains that byte.
-// PageSize is typically 64 bytes in size but varies by device.
-// Pages would be:
-//                           Page     64K       32K
-//      0      ->   63     = 0
-//      64     ->   127    = 1
-//      128    ->   191    = 2
-// 2000 8192   ->   8256   = 128
-// 7FF0 32752  ->   32816
-// ...
-// A000 40960  ->   41024  = 640      40960     8192 (0x2000)
-// ...
-// FFFF        ->   65536    1024
-
-// Create an a List of pages that have been loaded from the
-// data file.
-// To store a byte in the pages we determine which page it
-// belongs to and store it there.
-
 const DATA = 0
 const EOD = 1
 const SUCCESS = 1
@@ -118,20 +56,21 @@ func writeData(config map[string]interface{}, port io.ReadWriteCloser) {
 		log.Fatal(err)
 	}
 
-	// fmt.Println("Dumps")
-
+	fmt.Println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+	fmt.Println("Writing pages to ROM...")
+	fmt.Println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 	// Finally write pages to Mega controller.
 	for _, v := range pages {
-		fmt.Printf("Writing page: (%d) %d <%04x>\n", v.index, v.index*pageSize, v.index*pageSize)
-		v.dump()
-
-		success := writePage(port, v, pageSize)
-		if !success {
-			fmt.Println("FAILED writing")
-			break
+		if v.dirty {
+			fmt.Printf("Writing page: (%d) %d <%04x>\n", v.index, v.index*pageSize, v.index*pageSize)
+			v.dump()
+			success := writePage(port, v, pageSize)
+			if !success {
+				fmt.Println("FAILED writing page")
+				break
+			}
+			fmt.Println("Page SUCCESSFULLY written.")
 		}
-
-		fmt.Println("SUCCESS writing")
 	}
 
 	// for page := 0; page < 65536/2; page += 64 {
@@ -186,7 +125,7 @@ func processBlock(port io.ReadWriteCloser, scanner *bufio.Scanner, pages map[int
 		for _, byto := range bytes {
 			// Calc the page index
 			page, _ := getPage(port, blockAddress, pageSize, pages)
-			page.storeByAddress(blockAddress, pageSize, byto)
+			page.updateByAddress(blockAddress, pageSize, byto)
 
 			blockAddress++
 		}
@@ -253,7 +192,8 @@ func readPage(port io.ReadWriteCloser, page *RomPage, pageSize int64) {
 			port.Read(rd)
 			page.storeByIndex(i, rd[0])
 		}
-		fmt.Println("Page pre-read")
+
+		fmt.Println("ROM page contents:")
 		page.dump()
 	}
 }

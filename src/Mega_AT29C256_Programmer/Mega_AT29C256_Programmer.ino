@@ -641,6 +641,13 @@ void loop() {
   if (cmdMode == MODE_IDLE) {
     if (Serial1.available() > 0) {
       rx_string = Serial1.readString();
+      char c = rx_string.charAt(0);
+      //Serial.print("char: [");
+      //Serial.print(c, HEX);
+      //Serial.println("]");
+      if (c == 0)
+        return;
+        
       Serial.print("Got command: [");
       Serial.print(rx_string);
       Serial.println("]");
