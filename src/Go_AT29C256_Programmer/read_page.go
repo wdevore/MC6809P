@@ -10,7 +10,6 @@ import (
 func readPageByIndex(config map[string]interface{}, port io.ReadWriteCloser, index int64) {
 	pageSize := int64(config["PageSize"].(float64))
 
-	// pIndex := index * pageSize
 	page := NewPage(index, pageSize)
 	readPageFromRom(port, page, pageSize)
 
@@ -22,7 +21,6 @@ func readPageByAddress(config map[string]interface{}, port io.ReadWriteCloser, a
 	pageSize := int64(config["PageSize"].(float64))
 
 	pIndex := addr / pageSize
-	fmt.Println(pIndex)
 	page := NewPage(pIndex, pageSize)
 	readPageFromRom(port, page, pageSize)
 
