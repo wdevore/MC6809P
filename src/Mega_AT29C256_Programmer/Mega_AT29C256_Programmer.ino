@@ -7,7 +7,7 @@
 
 const byte VERSION_MAJOR = 1;
 const byte VERSION_MINOR = 0;
-const byte VERSION_PATCH = 15;
+const byte VERSION_PATCH = 16;
 const char PROGRAMMER[] = "AT29C256-15PC";
 
 // Address     Mega pins // Rom pins

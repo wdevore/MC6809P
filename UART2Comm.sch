@@ -1,6 +1,5 @@
 EESchema Schematic File Version 4
-LIBS:MC6809P-cache
-EELAYER 29 0
+EELAYER 30 0
 EELAYER END
 $Descr A1 33110 23386
 encoding utf-8
@@ -343,7 +342,7 @@ Wire Wire Line
 	12000 16300 12350 16300
 Wire Wire Line
 	16850 12600 16950 12600
-Text Notes 1900 14600 0    50   ~ 0
+Text Notes 6200 14950 0    50   ~ 0
 E = XTAL / 4 = 1.8432 MHz
 $Comp
 L LED:HDSP-4830_2 BAR?
@@ -995,8 +994,6 @@ Wire Wire Line
 Connection ~ 4350 6050
 Wire Wire Line
 	4350 6050 5150 6050
-Wire Bus Line
-	4900 3500 7300 3500
 Wire Wire Line
 	6600 4650 6600 7350
 $Comp
@@ -1202,9 +1199,6 @@ Wire Wire Line
 	6150 11850 7200 11850
 Wire Wire Line
 	6150 11950 7200 11950
-Connection ~ 7300 3500
-Wire Bus Line
-	7300 3500 8850 3500
 $Comp
 L Device:R R?
 U 1 1 5E3C694C
@@ -1376,8 +1370,6 @@ Wire Wire Line
 	13550 12250 13750 12250
 Wire Bus Line
 	7300 10350 13850 10350
-Wire Bus Line
-	7300 3500 7300 10350
 Connection ~ 7300 10350
 Wire Wire Line
 	16950 12600 16950 13450
@@ -1443,9 +1435,9 @@ Wire Wire Line
 	10200 3700 4150 3700
 Wire Wire Line
 	4150 3700 4150 5750
-Text Notes 4950 3400 0    50   ~ 0
+Text Notes 1750 4400 0    50   ~ 0
 0b1000000000000000 = 0x8000 = Control/Status registers\n0b1000000000000001 = 0x8001 = TX/RX registers
-Text Notes 11150 2950 0    50   ~ 0
+Text Notes 9950 3150 0    50   ~ 0
 0b1000000000000100 = 0x8004 = Periphera/Direction Reg A\n0b1000000000000101 = 0x8005 = Control Reg A\n0b1000000000000110 = 0x8006 = Periphera/Direction Reg B\n0b1000000000000111 = 0x8007 = Control Reg B
 $Comp
 L 74xx:74LS04 U?
@@ -1552,8 +1544,6 @@ Wire Wire Line
 Wire Wire Line
 	5150 13450 5050 13450
 Wire Wire Line
-	5050 13450 5050 13650
-Wire Wire Line
 	4350 13350 4350 15550
 Connection ~ 4350 13350
 Wire Wire Line
@@ -1581,10 +1571,6 @@ Wire Wire Line
 	2800 11050 3350 11050
 Wire Wire Line
 	3750 13350 4350 13350
-Wire Bus Line
-	13750 1900 8850 1900
-Wire Bus Line
-	8850 1900 8850 3500
 Wire Wire Line
 	4250 11650 4250 10100
 Wire Wire Line
@@ -2007,16 +1993,14 @@ A15
 $Comp
 L 74xx:74LS07 U?
 U 2 1 5E2D24C7
-P 4750 13650
-F 0 "U?" H 4750 13350 50  0000 C CNN
-F 1 "74LS07" H 4750 13450 50  0000 C CNN
-F 2 "" H 4750 13650 50  0001 C CNN
-F 3 "www.ti.com/lit/ds/symlink/sn74ls07.pdf" H 4750 13650 50  0001 C CNN
-	2    4750 13650
+P 4700 13750
+F 0 "U?" H 4700 13450 50  0000 C CNN
+F 1 "74LS07" H 4700 13550 50  0000 C CNN
+F 2 "" H 4700 13750 50  0001 C CNN
+F 3 "www.ti.com/lit/ds/symlink/sn74ls07.pdf" H 4700 13750 50  0001 C CNN
+	2    4700 13750
 	-1   0    0    -1  
 $EndComp
-Wire Wire Line
-	3350 13650 3350 11550
 Wire Wire Line
 	3350 11550 3150 11550
 $Comp
@@ -2125,12 +2109,29 @@ Wire Bus Line
 Connection ~ 13850 13700
 Wire Bus Line
 	13850 13700 12350 13700
-Wire Wire Line
-	3350 13650 4450 13650
 Wire Bus Line
 	4850 9250 3450 9250
 Wire Bus Line
 	3450 9250 3450 6650
+Text Notes 6100 4200 0    50   ~ 10
+UART
+Text Notes 15750 2250 0    50   ~ 10
+PIA
+Wire Bus Line
+	4900 1900 7300 1900
+Connection ~ 7300 1900
+Wire Bus Line
+	7300 1900 13750 1900
+Wire Bus Line
+	7300 1900 7300 10350
+Wire Wire Line
+	4400 13750 3350 13750
+Wire Wire Line
+	3350 11550 3350 13750
+Wire Wire Line
+	5050 13750 5000 13750
+Wire Wire Line
+	5050 13450 5050 13750
 Wire Bus Line
 	2300 6650 3450 6650
 Wire Bus Line
@@ -2144,11 +2145,11 @@ Wire Bus Line
 Wire Bus Line
 	13750 1900 13750 2700
 Wire Bus Line
-	4900 3500 4900 5050
-Wire Bus Line
 	7300 10350 7300 11850
 Wire Bus Line
 	17150 10350 17150 12000
+Wire Bus Line
+	4900 1900 4900 5050
 Wire Bus Line
 	15500 11500 15500 13700
 Wire Bus Line

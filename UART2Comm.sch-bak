@@ -327,7 +327,6 @@ Wire Wire Line
 	15600 12700 15850 12700
 Wire Wire Line
 	15600 12800 15850 12800
-Connection ~ 16350 10950
 Wire Wire Line
 	10950 16300 10950 15350
 Wire Wire Line
@@ -475,7 +474,7 @@ AR Path="/5DAB0D48/5E0E1E1C" Ref="U?"  Part="1"
 AR Path="/5F293828/5E0E1E1C" Ref="U?"  Part="1" 
 AR Path="/5E092EDC/5E0E1E1C" Ref="U?"  Part="1" 
 F 0 "U?" H 16100 12900 50  0000 C CNN
-F 1 "FM1808 ROM (NVRam)" V 16350 12050 50  0000 C CNN
+F 1 "AT29C256 PEROM" V 16350 12050 50  0000 C CNN
 F 2 "Package_SO:SOIC-28W_7.5x17.9mm_P1.27mm" H 16350 12100 50  0001 C CNN
 F 3 "http://www.cypress.com/file/136521/download" H 16350 12100 50  0001 C CNN
 	1    16350 12100
@@ -603,24 +602,6 @@ F 3 "" H 9750 5350 50  0001 C CNN
 $EndComp
 Text Notes 43550 4600 0    50   ~ 0
 Host or SBC check token first. If it already set then\neach waits. Once cleared the first to grab it\ncan transmit.
-$Comp
-L Device:R R?
-U 1 1 5E0E203D
-P 17700 11350
-AR Path="/5DAB0D48/5E0E203D" Ref="R?"  Part="1" 
-AR Path="/5F293828/5E0E203D" Ref="R?"  Part="1" 
-AR Path="/5E092EDC/5E0E203D" Ref="R?"  Part="1" 
-F 0 "R?" H 17770 11396 50  0000 L CNN
-F 1 "4.7K" H 17770 11305 50  0000 L CNN
-F 2 "" V 17630 11350 50  0001 C CNN
-F 3 "~" H 17700 11350 50  0001 C CNN
-	1    17700 11350
-	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	16350 10950 17700 10950
-Wire Wire Line
-	17700 10950 17700 11200
 $Comp
 L Power_Supervisor:DS1232L U?
 U 1 1 5E0516DA
@@ -1013,8 +994,6 @@ Wire Wire Line
 Connection ~ 4350 6050
 Wire Wire Line
 	4350 6050 5150 6050
-Wire Bus Line
-	4900 3500 7300 3500
 Wire Wire Line
 	6600 4650 6600 7350
 $Comp
@@ -1220,9 +1199,6 @@ Wire Wire Line
 	6150 11850 7200 11850
 Wire Wire Line
 	6150 11950 7200 11950
-Connection ~ 7300 3500
-Wire Bus Line
-	7300 3500 8850 3500
 $Comp
 L Device:R R?
 U 1 1 5E3C694C
@@ -1394,8 +1370,6 @@ Wire Wire Line
 	13550 12250 13750 12250
 Wire Bus Line
 	7300 10350 13850 10350
-Wire Bus Line
-	7300 3500 7300 10350
 Connection ~ 7300 10350
 Wire Wire Line
 	16950 12600 16950 13450
@@ -1461,9 +1435,9 @@ Wire Wire Line
 	10200 3700 4150 3700
 Wire Wire Line
 	4150 3700 4150 5750
-Text Notes 4950 3400 0    50   ~ 0
+Text Notes 1750 4400 0    50   ~ 0
 0b1000000000000000 = 0x8000 = Control/Status registers\n0b1000000000000001 = 0x8001 = TX/RX registers
-Text Notes 11150 2950 0    50   ~ 0
+Text Notes 9950 3150 0    50   ~ 0
 0b1000000000000100 = 0x8004 = Periphera/Direction Reg A\n0b1000000000000101 = 0x8005 = Control Reg A\n0b1000000000000110 = 0x8006 = Periphera/Direction Reg B\n0b1000000000000111 = 0x8007 = Control Reg B
 $Comp
 L 74xx:74LS04 U?
@@ -1501,11 +1475,6 @@ Entry Wire Line
 	2850 6650 2750 6550
 Entry Wire Line
 	2200 6550 2300 6650
-Wire Bus Line
-	4850 5550 4850 6650
-Connection ~ 4850 6650
-Wire Bus Line
-	4850 6650 4850 9250
 Wire Wire Line
 	3200 5650 3200 5750
 Wire Wire Line
@@ -1604,10 +1573,6 @@ Wire Wire Line
 	2800 11050 3350 11050
 Wire Wire Line
 	3750 13350 4350 13350
-Wire Bus Line
-	13750 1900 8850 1900
-Wire Bus Line
-	8850 1900 8850 3500
 Wire Wire Line
 	4250 11650 4250 10100
 Wire Wire Line
@@ -2140,15 +2105,28 @@ Wire Wire Line
 Wire Wire Line
 	16850 12800 17950 12800
 Wire Wire Line
-	17700 11500 17700 12500
-Wire Wire Line
 	18550 12700 18900 12700
 Wire Wire Line
 	18550 12900 19050 12900
 Wire Bus Line
 	13850 12850 13850 13700
+Connection ~ 13850 13700
 Wire Bus Line
-	2300 6650 4850 6650
+	13850 13700 12350 13700
+Wire Wire Line
+	3350 13650 4450 13650
+Wire Bus Line
+	4850 9250 3450 9250
+Wire Bus Line
+	3450 9250 3450 6650
+Text Notes 6100 4200 0    50   ~ 10
+UART
+Text Notes 15750 2250 0    50   ~ 10
+PIA
+Wire Bus Line
+	4900 1900 7300 1900
+Wire Bus Line
+	2300 6650 3450 6650
 Wire Bus Line
 	19950 12400 19950 13700
 Wire Bus Line
@@ -2160,8 +2138,6 @@ Wire Bus Line
 Wire Bus Line
 	13750 1900 13750 2700
 Wire Bus Line
-	4900 3500 4900 5050
-Wire Bus Line
 	7300 10350 7300 11850
 Wire Bus Line
 	17150 10350 17150 12000
@@ -2171,9 +2147,11 @@ Wire Bus Line
 	12350 9250 12350 13700
 Wire Bus Line
 	4850 9250 4850 12650
-Connection ~ 13850 13700
+Connection ~ 7300 1900
 Wire Bus Line
-	13850 13700 12350 13700
-Wire Wire Line
-	3350 13650 4450 13650
+	7300 1900 13750 1900
+Wire Bus Line
+	4900 1900 4900 5050
+Wire Bus Line
+	7300 1900 7300 10350
 $EndSCHEMATC
